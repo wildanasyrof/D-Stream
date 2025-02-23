@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DS</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_favorite">Favorites</string>
+    <string name="nav_user">User</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_pagging">An error occurred</string>
+    <string name="pagging_retry">Retry</string>
+</resources>
