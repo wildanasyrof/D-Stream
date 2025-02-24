@@ -1,4 +1,4 @@
-package com.wldnasyrf.ds.ui.home
+package com.wldnasyrf.ds.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import com.bumptech.glide.Glide
 import com.wldnasyrf.ds.data.remote.model.AnimeData
 import com.wldnasyrf.ds.databinding.ItemAnimeBinding
 
-class HomePagingAdapter : PagingDataAdapter<AnimeData, HomePagingAdapter.HomeViewHolder>(DIFF_CALLBACK){
+class HomePagingAdapter(private val onItemClick: (Int) -> Unit) : PagingDataAdapter<AnimeData, HomePagingAdapter.HomeViewHolder>(
+    DIFF_CALLBACK
+){
 
     inner class HomeViewHolder(private val binding: ItemAnimeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(anime: AnimeData) {
@@ -19,18 +21,22 @@ class HomePagingAdapter : PagingDataAdapter<AnimeData, HomePagingAdapter.HomeVie
             binding.textEpisodes.text = anime.episode_count.toString()
             binding.textYear.text = anime.year
             Glide.with(binding.imageAnime).load(anime.image_source).into(binding.imageAnime)
+
+            binding.root.setOnClickListener {
+                onItemClick(anime.id)
+            }
         }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HomePagingAdapter.HomeViewHolder {
+    ): HomeViewHolder {
         val binding = ItemAnimeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HomePagingAdapter.HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val anime = getItem(position)
         anime?.let {
             holder.bind(it)

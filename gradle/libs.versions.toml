@@ -3,6 +3,7 @@ agp = "8.5.2"
 compiler = "4.15.1"
 converterGson = "2.9.0"
 glide = "4.15.1"
+glideTransformations = "4.3.0"
 gson = "2.10.1"
 hiltCompiler = "2.48"
 hiltAndroid = "2.48"
@@ -39,6 +40,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 github-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-transformations = { module = "jp.wasabeef:glide-transformations", version.ref = "glideTransformations" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }

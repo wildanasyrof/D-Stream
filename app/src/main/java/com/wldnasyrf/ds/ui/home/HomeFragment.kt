@@ -1,5 +1,6 @@
 package com.wldnasyrf.ds.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wldnasyrf.ds.adapter.HomeLoadStateAdapter
+import com.wldnasyrf.ds.adapter.HomePagingAdapter
 import com.wldnasyrf.ds.databinding.FragmentHomeBinding
+import com.wldnasyrf.ds.ui.detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +35,29 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeAdapter = HomePagingAdapter()
+        setupRecyclerView()
+        observeAnimeList()
+    }
+
+    private fun observeAnimeList() {
+        viewModel.anime.observe(viewLifecycleOwner) {
+            homeAdapter.submitData(lifecycle, it)
+        }
+    }
+
+    private fun setupRecyclerView() {
+        homeAdapter = HomePagingAdapter { animeId ->
+            // Handle click and open DetailActivity
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("ANIME_ID", animeId)
+            startActivity(intent)
+        }
+
+        homeAdapter.addLoadStateListener { loadState ->
+            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            binding.retryButton.isVisible = loadState.source.refresh is LoadState.Error
+            binding.retryButton.setOnClickListener { homeAdapter.retry() }
+        }
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -39,16 +65,6 @@ class HomeFragment : Fragment() {
                 header = HomeLoadStateAdapter { homeAdapter.retry() },
                 footer = HomeLoadStateAdapter { homeAdapter.retry() }
             )
-        }
-
-        viewModel.anime.observe(viewLifecycleOwner) {
-            homeAdapter.submitData(lifecycle, it)
-        }
-
-        homeAdapter.addLoadStateListener { loadState ->
-            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-            binding.retryButton.isVisible = loadState.source.refresh is LoadState.Error
-            binding.retryButton.setOnClickListener { homeAdapter.retry() }
         }
     }
 

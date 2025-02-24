@@ -22,12 +22,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY // Logs request & response body
-        }
+        val loggingInterceptor =
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor) // Add logging interceptor
+            .addInterceptor(loggingInterceptor)
             .build()
 
         return Retrofit.Builder()
@@ -45,7 +44,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAnimerepository(apiService: ApiService): AnimeRepository {
+    fun provideAnimeRepository(apiService: ApiService): AnimeRepository {
         return AnimeRepositoryImpl(apiService)
     }
 }

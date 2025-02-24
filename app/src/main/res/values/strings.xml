@@ -7,4 +7,21 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_pagging">An error occurred</string>
     <string name="pagging_retry">Retry</string>
+    <string name="content_desc_photo_on_detail">Photo of the place</string>
+    <string name="button_favourite">Favorite Button</string>
+
+    <string name="title_episode">Mystery in the Shadows</string>
+    <string name="episode_number">Episode 1</string>
+    <string name="watch_now">Watch now</string>
+
+    //OverviewFragment
+    <string name="anime_title">Title of the Anime</string>
+    <string name="anime_alt_title">Alt title of the Anime</string>
+    <string name="placeholder_value_rating">Rating : %s</string>
+    <string name="content_desc_icon_rating">Icon Rating</string>
+    <string name="placeholder_value_chapters">Chapters : %s</string>
+    <string name="placeholder_value_studio">Studio : %s</string>
+    <string name="placeholder_value_year">Year : %s</string>
+    <string name="placeholder_value_synopsis">Synopsis :</string>
+    <string name="tmp_description">Description from anime</string>
 </resources>

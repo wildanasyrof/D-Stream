@@ -1,4 +1,4 @@
-package com.wldnasyrf.ds.ui.home
+package com.wldnasyrf.ds.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -36,7 +36,7 @@ class HomeLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Hom
         }
     }
     override fun onBindViewHolder(
-        holder: HomeLoadStateAdapter.LoadStateViewHolder,
+        holder: LoadStateViewHolder,
         loadState: LoadState
     ) {
        holder.bind(loadState)
@@ -45,7 +45,7 @@ class HomeLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<Hom
     override fun onCreateViewHolder(
         parent: ViewGroup,
         loadState: LoadState
-    ): HomeLoadStateAdapter.LoadStateViewHolder {
+    ): LoadStateViewHolder {
         val binding = PagingLoadStateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LoadStateViewHolder(binding, retry)
     }

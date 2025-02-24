@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
 
     // Glide for image loading
+    implementation(libs.glide.transformations)
     implementation(libs.github.glide)
     ksp(libs.compiler)
 
