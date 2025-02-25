@@ -89,4 +89,6 @@ dependencies {
     // Paging 3
     implementation(libs.androidx.paging.runtime.ktx)
 
+    //circle image
+    implementation(libs.circleimageview)
 }

@@ -46,18 +46,18 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupView() {
         val toolbar = binding.toolbarId
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            val marginTop = resources.getDimensionPixelSize(R.dimen.toolbar_margin_top)
-            val toolbarLayoutParams = toolbar.layoutParams as ViewGroup.MarginLayoutParams
-            toolbarLayoutParams.topMargin = marginTop
-            toolbar.layoutParams = toolbarLayoutParams
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//            val marginTop = resources.getDimensionPixelSize(R.dimen.toolbar_margin_top)
+//            val toolbarLayoutParams = toolbar.layoutParams as ViewGroup.MarginLayoutParams
+//            toolbarLayoutParams.topMargin = marginTop
+//            toolbar.layoutParams = toolbarLayoutParams
+//        } else {
+//            window.setFlags(
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN
+//            )
+//        }
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

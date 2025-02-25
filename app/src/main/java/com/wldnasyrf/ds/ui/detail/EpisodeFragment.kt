@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.utils.Result
 import com.wldnasyrf.ds.adapter.EpisodeAdapter
 import com.wldnasyrf.ds.databinding.FragmentEpisodeBinding
@@ -35,6 +36,20 @@ class EpisodeFragment : Fragment() {
 
         setupRecyclerView()
         observeAnimeData()
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+
+        val animeTitle = arguments?.getString("anime_title") ?: "Episode"
+
+        val toolbar = binding.toolbar
+        toolbar.title = animeTitle
+        toolbar.setNavigationOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, OverviewFragment())
+                .commit()
+        }
     }
 
     private fun observeAnimeData() {
@@ -63,6 +78,17 @@ class EpisodeFragment : Fragment() {
         binding.rvEpisode.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = episodeAdapter
+        }
+    }
+
+    companion object {
+        fun newInstance(animeId: Int, animeTitle: String): EpisodeFragment {
+            return EpisodeFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("anime_id", animeId)
+                    putString("anime_title", animeTitle)
+                }
+            }
         }
     }
 }

@@ -24,4 +24,8 @@
     <string name="placeholder_value_year">Year : %s</string>
     <string name="placeholder_value_synopsis">Synopsis :</string>
     <string name="tmp_description">Description from anime</string>
+    <string name="tv_account">Account</string>
+    <string name="icon_edit_account">Edit Profile</string>
+    <string name="item_profile_1">Edit Profile</string>
+    <string name="desc_profile_1">Edit your profile info</string>
 </resources>

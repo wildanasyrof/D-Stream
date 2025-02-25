@@ -32,7 +32,6 @@ class OverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //code here
 
-        switchFragment()
         observeAnimeData()
     }
 
@@ -65,14 +64,15 @@ class OverviewFragment : Fragment() {
             tvRating.text = rating.toString()
             tvDescription.text = synopsis
         }
-    }
 
-    private fun switchFragment() {
-        binding.btnWatchNow.setOnClickListener {
+        val episodeFragment = EpisodeFragment.newInstance(animeDetail.id, animeDetail.title)
+
+        btnWatchNow.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, EpisodeFragment())
+                .replace(R.id.fragment_container, episodeFragment)
                 .commit()
         }
+
     }
 
     override fun onDestroyView() {
