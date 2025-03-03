@@ -3,6 +3,8 @@ package com.wldnasyrf.ds.di
 import com.wldnasyrf.ds.data.remote.api.ApiService
 import com.wldnasyrf.ds.data.repository.anime.AnimeRepository
 import com.wldnasyrf.ds.data.repository.anime.AnimeRepositoryImpl
+import com.wldnasyrf.ds.data.repository.user.UserRepository
+import com.wldnasyrf.ds.data.repository.user.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,5 +48,11 @@ object NetworkModule {
     @Singleton
     fun provideAnimeRepository(apiService: ApiService): AnimeRepository {
         return AnimeRepositoryImpl(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(apiService: ApiService): UserRepository {
+        return UserRepositoryImpl(apiService)
     }
 }

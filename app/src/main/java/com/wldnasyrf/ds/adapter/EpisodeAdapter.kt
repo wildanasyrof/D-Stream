@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wldnasyrf.ds.R
-import com.wldnasyrf.ds.data.remote.model.Episode
+import com.wldnasyrf.ds.data.remote.model.anime.Episode
 import com.wldnasyrf.ds.databinding.ItemsEpisodeBinding
 
 class EpisodeAdapter(

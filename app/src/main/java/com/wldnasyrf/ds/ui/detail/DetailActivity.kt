@@ -1,10 +1,7 @@
 package com.wldnasyrf.ds.ui.detail
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.wldnasyrf.ds.R
-import com.wldnasyrf.ds.data.remote.model.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
 import com.wldnasyrf.ds.databinding.ActivityDetailBinding
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint

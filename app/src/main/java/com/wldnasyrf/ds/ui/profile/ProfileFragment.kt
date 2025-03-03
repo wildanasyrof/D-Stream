@@ -1,11 +1,13 @@
 package com.wldnasyrf.ds.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.wldnasyrf.ds.databinding.FragmentProfileBinding
+import com.wldnasyrf.ds.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +27,13 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // code here
+        itemLogout()
+    }
+
+    private fun itemLogout() {
+        binding.btnItemLogout.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
     }
 
     override fun onDestroyView() {

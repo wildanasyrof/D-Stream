@@ -3,7 +3,7 @@ package com.wldnasyrf.ds.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.wldnasyrf.ds.data.remote.api.ApiService
-import com.wldnasyrf.ds.data.remote.model.AnimeData
+import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 
 class AnimePagingSource(private val apiService: ApiService): PagingSource<Int, AnimeData>() {
 

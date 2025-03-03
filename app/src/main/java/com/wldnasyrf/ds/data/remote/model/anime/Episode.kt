@@ -1,4 +1,4 @@
-package com.wldnasyrf.ds.data.remote.model
+package com.wldnasyrf.ds.data.remote.model.anime
 
 import com.google.gson.annotations.SerializedName
 

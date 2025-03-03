@@ -4,11 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.wldnasyrf.ds.data.remote.model.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
 import com.wldnasyrf.ds.data.repository.anime.AnimeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.wldnasyrf.ds.utils.Result
 

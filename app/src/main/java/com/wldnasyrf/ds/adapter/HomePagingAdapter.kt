@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.wldnasyrf.ds.data.remote.model.AnimeData
+import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.databinding.ItemAnimeBinding
 
 class HomePagingAdapter(private val onItemClick: (Int) -> Unit) : PagingDataAdapter<AnimeData, HomePagingAdapter.HomeViewHolder>(

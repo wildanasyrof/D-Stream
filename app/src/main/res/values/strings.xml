@@ -28,4 +28,34 @@
     <string name="icon_edit_account">Edit Profile</string>
     <string name="item_profile_1">Edit Profile</string>
     <string name="desc_profile_1">Edit your profile info</string>
+    <string name="tv_preferences">Preferences</string>
+    <string name="icon_logout">Logout</string>
+    <string name="item_logout">Logout</string>
+    <string name="desc_logout">Logout from your account</string>
+    <string name="headline_on_login">Welcome to DeStream</string>
+    <string name="caption_on_login">Stay signed to your account to create watching list</string>
+    <string name="image_on_loginactivity">Image on LoginActivity</string>
+
+    //login
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="suggestion2register">Don’t Have an Account?</string>
+    <string name="register_now">Register Now!</string>
+    <string name="register">Register</string>
+    <string name="registerCaption">Create your account and start your journey with us</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="submit">Submit</string>
+
+    <string name="email_empty">Email Must Be Filled</string>
+    <string name="password_empty">Password Must Be Filled</string>
+    <string name="password_confirmation_empty">Password Confirmation Must Be Filled</string>
+    <string name="email_n_password_empty">Email and Password Must Be Filled</string>
+    <string name="full_name_empty">Full Name Must Be Filled</string>
+    <string name="email_invalid">Format Email is Invalid</string>
+    <string name="password_minimum_character">Password Must Be at Least 8 Characters</string>
+    <string name="password_not_match">Password entered is not the same</string>
+    <string name="account_already_registered">Your account is created and ready to use. Login and see what other people is up to!</string>
 </resources>

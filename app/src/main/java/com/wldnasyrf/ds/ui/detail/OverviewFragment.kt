@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.wldnasyrf.ds.R
-import com.wldnasyrf.ds.data.remote.model.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
 import com.wldnasyrf.ds.databinding.FragmentOverviewBinding
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
