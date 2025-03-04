@@ -5,10 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.data.repository.anime.AnimeRepository
+import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.wldnasyrf.ds.utils.Result
 
 
 @HiltViewModel
@@ -28,6 +29,11 @@ class DetailViewModel @Inject constructor(
             Log.e("DetailViewModel", "Repository returned: $result") // 🔍 Debug response
             _animeDetail.value = result
         }
+    }
+
+    suspend fun addFavoriteApi(request: FavoriteRequest) : String? {
+        val response = animeRepository.addFavoriteApi(request)
+        return if (response.status == "error") response.message else null
     }
 
 }

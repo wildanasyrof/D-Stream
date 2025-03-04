@@ -61,7 +61,10 @@ dependencies {
 
     // Room for local database
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx) // Coroutine support for Room
     ksp(libs.room.compiler)
+
+    implementation(libs.androidx.datastore.preferences)
 
     // ViewModel and LiveData (Jetpack)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

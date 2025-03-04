@@ -2,16 +2,20 @@ package com.wldnasyrf.ds.ui.detail
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.databinding.FragmentOverviewBinding
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OverviewFragment : Fragment() {
@@ -71,6 +75,15 @@ class OverviewFragment : Fragment() {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, episodeFragment)
                 .commit()
+        }
+
+        btnFavourite.setOnClickListener {
+            lifecycleScope.launch {
+                val errorMessage = viewModel.addFavoriteApi(FavoriteRequest(animeDetail.id))
+                if (errorMessage != null) {
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
     }

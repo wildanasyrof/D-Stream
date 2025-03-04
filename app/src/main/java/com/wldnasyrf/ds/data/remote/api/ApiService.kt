@@ -3,6 +3,7 @@ package com.wldnasyrf.ds.data.remote.api
 import com.wldnasyrf.ds.data.remote.model.ApiResponse
 import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginResponse
 import retrofit2.http.Body
@@ -26,5 +27,8 @@ interface ApiService {
 
     @GET("anime/{id}")
     suspend fun getAnimeDetail(@Path("id") id: Int): ApiResponse<AnimeDetail>
+
+    @POST("user/favorite")
+    suspend fun addFavorite(@Body request: FavoriteRequest): ApiResponse<Nothing>
 
 }

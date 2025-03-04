@@ -1,4 +1,4 @@
-package com.wldnasyrf.ds.ui.home
+package com.wldnasyrf.ds.ui.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

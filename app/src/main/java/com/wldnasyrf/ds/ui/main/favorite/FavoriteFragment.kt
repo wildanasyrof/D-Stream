@@ -1,4 +1,4 @@
-package com.wldnasyrf.ds.ui.favorite
+package com.wldnasyrf.ds.ui.main.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

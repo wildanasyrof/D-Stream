@@ -72,9 +72,15 @@ class LoginActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
                     showLoading(false)
-
+                    finish()
                 }
             }
+        }
+    }
+
+    private fun getUserPerferences() {
+        viewModel.userPreferences.observe(this) {
+            Toast.makeText(this, it.token, Toast.LENGTH_SHORT).show()
         }
     }
 
