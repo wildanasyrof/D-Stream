@@ -20,7 +20,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://go-api.wldnasyrf.my.id/"
+    private const val BASE_URL = "https://go-stream.vee666.my.id/"
 
     @Provides
     @Singleton

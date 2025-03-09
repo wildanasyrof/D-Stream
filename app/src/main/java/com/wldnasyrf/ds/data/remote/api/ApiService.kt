@@ -7,6 +7,7 @@ import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -30,5 +31,8 @@ interface ApiService {
 
     @POST("user/favorite")
     suspend fun addFavorite(@Body request: FavoriteRequest): ApiResponse<Nothing>
+
+    @DELETE("user/favorite/{id}")
+    suspend fun deleteFavorite(@Path("id") id: Int): ApiResponse<Nothing>
 
 }

@@ -1,6 +1,7 @@
 package com.wldnasyrf.ds.di
 
 import com.wldnasyrf.ds.data.local.datastore.UserPreferences
+import com.wldnasyrf.ds.data.local.room.database.FavoritesDao
 import com.wldnasyrf.ds.data.remote.api.ApiService
 import com.wldnasyrf.ds.data.repository.anime.AnimeRepository
 import com.wldnasyrf.ds.data.repository.anime.AnimeRepositoryImpl
@@ -18,8 +19,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideAnimeRepository(apiService: ApiService, userPreferences: UserPreferences): AnimeRepository {
-        return AnimeRepositoryImpl(apiService)
+    fun provideAnimeRepository(apiService: ApiService, favoriteDao: FavoritesDao): AnimeRepository {
+        return AnimeRepositoryImpl(apiService, favoriteDao)
     }
 
     @Provides

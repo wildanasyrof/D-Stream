@@ -75,6 +75,7 @@ class DetailActivity : AppCompatActivity() {
         Log.e("DetailActivity", "observeAnimeDetail CALLED with ID: $animeId") // 🔍 Debug log
 
         viewModel.fetchAnimeDetail(animeId)
+        viewModel.getIsFavorite(animeId)
 
         viewModel.animeDetail.observe(this) { result ->
             when (result) {

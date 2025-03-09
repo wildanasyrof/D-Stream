@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
+import com.wldnasyrf.ds.data.local.room.database.FavoritesDao
 import com.wldnasyrf.ds.data.local.room.entity.DsDatabase
 import dagger.Module
 import dagger.Provides
@@ -27,6 +28,11 @@ object StorageModule {
             DsDatabase::class.java,
             "ds_database"
         ).build()
+    }
+
+    @Provides
+    fun provideFavoriteDao(database: DsDatabase): FavoritesDao {
+        return database.favoritesDao()
     }
 
     @Provides

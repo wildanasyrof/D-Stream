@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
-import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.databinding.FragmentOverviewBinding
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +36,17 @@ class OverviewFragment : Fragment() {
         //code here
 
         observeAnimeData()
+        observeFavoriteState()
+    }
+
+    private fun observeFavoriteState() {
+        viewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
+            if (isFavorite) {
+                binding.btnFavourite.setImageResource(R.drawable.ic_favourite)
+            } else {
+                binding.btnFavourite.setImageResource(R.drawable.ic_favourite_border)
+            }
+        }
     }
 
     private fun observeAnimeData() {
@@ -78,11 +88,23 @@ class OverviewFragment : Fragment() {
         }
 
         btnFavourite.setOnClickListener {
-            lifecycleScope.launch {
-                val errorMessage = viewModel.addFavoriteApi(FavoriteRequest(animeDetail.id))
-                if (errorMessage != null) {
-                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+            viewLifecycleOwner.lifecycleScope.launch {
+                if (viewModel.isFavorite.value == true) {
+                    // If already favorite, remove it
+                    val errorMessage = viewModel.deleteFavorite(animeDetail)
+                    if (errorMessage != null) {
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // If not favorite, add it
+                    val errorMessage = viewModel.addFavorite(animeDetail)
+                    if (errorMessage != null) {
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
                 }
+
+                // Refresh favorite state
+                viewModel.getIsFavorite(animeDetail.id)
             }
         }
 

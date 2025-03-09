@@ -7,6 +7,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
+import com.wldnasyrf.ds.data.local.room.database.FavoritesDao
+import com.wldnasyrf.ds.data.local.room.entity.FavoriteEntity
 import com.wldnasyrf.ds.data.paging.AnimePagingSource
 import com.wldnasyrf.ds.data.remote.api.ApiService
 import com.wldnasyrf.ds.data.remote.model.ApiResponse
@@ -19,7 +21,8 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class AnimeRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val favoriteDao: FavoritesDao
 ) : AnimeRepository {
     override fun getAnimeList(): LiveData<PagingData<AnimeData>> {
         return Pager(
@@ -64,6 +67,40 @@ class AnimeRepositoryImpl @Inject constructor(
             Log.e("AnimeRepository", "Network error: $e")
             ApiResponse(status = "error", message = e.localizedMessage?.toString() ?: "Network Error!")
         }
+    }
+
+    override suspend fun addFavoriteRoom(anime: AnimeDetail) {
+        favoriteDao.insert(FavoriteEntity(
+            id = anime.id,
+            title = anime.title,
+            altTitles = anime.altTitles,
+            year = anime.year,
+            rating = anime.rating.toInt(),
+            imageSource = anime.imageSource
+        ))
+    }
+
+    override suspend fun getFavoriteByID(animeId: Int): FavoriteEntity? {
+        return favoriteDao.getFavoriteById(animeId)
+    }
+
+    override suspend fun deleteFavoriteApi(animeId: Int): ApiResponse<Nothing> {
+        return try {
+            val response = apiService.deleteFavorite(animeId)
+            Log.i("AnimeRepository", "Remove Favorite success: $response")
+            ApiResponse(status = response.status, message = response.message)
+        } catch (e: HttpException) {
+            val errorResponse = ApiError.parseError(e)
+            Log.e("AnimeRepository", "Remove Favorite error: ${errorResponse.error}")
+            ApiResponse(status = "error", message = errorResponse.message)
+        } catch (e: Throwable) {
+            Log.e("AnimeRepository", "Network error: $e")
+            ApiResponse(status = "error", message = e.localizedMessage?.toString() ?: "Network Error!")
+        }
+    }
+
+    override suspend fun deleteFavoriteRoom(anime: AnimeDetail) {
+        return favoriteDao.deleteByAnimeId(anime.id)
     }
 
 
