@@ -1,11 +1,11 @@
 package com.wldnasyrf.ds.data.local.room.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.wldnasyrf.ds.data.local.room.entity.FavoriteEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoritesDao {
@@ -20,5 +20,5 @@ interface FavoritesDao {
     suspend fun deleteByAnimeId(animeId: Int)
 
     @Query("SELECT * FROM favorites")
-    fun getAllFavorites(): Flow<List<FavoriteEntity>> // For observing all favorites
+    fun getAllFavorites(): LiveData<List<FavoriteEntity>>
 }

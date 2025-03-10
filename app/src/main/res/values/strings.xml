@@ -58,4 +58,6 @@
     <string name="password_minimum_character">Password Must Be at Least 8 Characters</string>
     <string name="password_not_match">Password entered is not the same</string>
     <string name="account_already_registered">Your account is created and ready to use. Login and see what other people is up to!</string>
+    <string name="fav_img_bg_desc">Background image</string>
+    <string name="fragment_favorite_title">Favorites</string>
 </resources>

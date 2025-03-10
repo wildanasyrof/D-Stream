@@ -103,5 +103,7 @@ class AnimeRepositoryImpl @Inject constructor(
         return favoriteDao.deleteByAnimeId(anime.id)
     }
 
-
+    override fun getAllFavorites(): LiveData<List<FavoriteEntity>> {
+        return favoriteDao.getAllFavorites()
+    }
 }

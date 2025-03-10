@@ -17,4 +17,5 @@ interface AnimeRepository {
     suspend fun getFavoriteByID(animeId: Int) : FavoriteEntity?
     suspend fun deleteFavoriteApi(animeId: Int): ApiResponse<Nothing>
     suspend fun deleteFavoriteRoom(anime: AnimeDetail)
+    fun getAllFavorites(): LiveData<List<FavoriteEntity>>
 }
