@@ -60,4 +60,5 @@
     <string name="account_already_registered">Your account is created and ready to use. Login and see what other people is up to!</string>
     <string name="fav_img_bg_desc">Background image</string>
     <string name="fragment_favorite_title">Favorites</string>
+    <string name="add_to_favorites">Add favorite</string>
 </resources>

@@ -12,6 +12,7 @@ import com.wldnasyrf.ds.data.local.room.entity.FavoriteEntity
 import com.wldnasyrf.ds.data.paging.AnimePagingSource
 import com.wldnasyrf.ds.data.remote.api.ApiService
 import com.wldnasyrf.ds.data.remote.model.ApiResponse
+import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
 import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
@@ -35,12 +36,30 @@ class AnimeRepositoryImpl @Inject constructor(
         ).liveData
     }
 
+    override fun getAnimeData(): LiveData<Result<ApiResponse<Anime>>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val response = apiService.getAnime()
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val errorResponse = ApiError.parseError(e)
+            Log.e("AnimeRepository", "GetAnimeData error: ${errorResponse.error}")
+            emit(Result.Error(errorResponse.message))
+        } catch (e: Throwable) {
+            Log.e("AnimeRepository", "Network error: $e")
+            ApiResponse(status = "error", message = e.localizedMessage?.toString() ?: "Network Error!", data = null)
+            Log.e("AnimeRepository", "GetAnimeData error: ${e.localizedMessage?.toString() ?: "Network Error!"}")
+            emit(Result.Error(e.localizedMessage?.toString() ?: "Network Error!"))
+        }
+    }
+
     override fun getAnimeDetail(id: Int): LiveData<Result<AnimeDetail>> = liveData {
         emit(Result.Loading)
 
         try {
             val response = apiService.getAnimeDetail(id)
-            Log.e("AnimeRepositoryImpl", "Full API Response: $response") // 🔍 Debug full response
+            Log.i("AnimeRepositoryImpl", "Full API Response: $response") // 🔍 Debug full response
 
             if (response.data != null) {
                 emit(Result.Success(response.data))
@@ -53,6 +72,7 @@ class AnimeRepositoryImpl @Inject constructor(
             emit(Result.Error(e.localizedMessage ?: "An unexpected error occurred"))
         }
     }
+
 
     override suspend fun addFavoriteApi(request: FavoriteRequest) : ApiResponse<Nothing> {
         return try {
