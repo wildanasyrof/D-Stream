@@ -7,10 +7,12 @@ import com.wldnasyrf.ds.data.remote.model.ApiResponse
 import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.Category
 import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.utils.Result
 
 interface AnimeRepository {
+    fun getCategory(): LiveData<Result<ApiResponse<List<Category>>>>
     fun getAnimeList(): LiveData<PagingData<AnimeData>>
     fun getAnimeDetail(id: Int): LiveData<Result<AnimeDetail>>
     fun getAnimeData(): LiveData<Result<ApiResponse<Anime>>>

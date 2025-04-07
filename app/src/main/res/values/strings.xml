@@ -61,4 +61,9 @@
     <string name="fav_img_bg_desc">Background image</string>
     <string name="fragment_favorite_title">Favorites</string>
     <string name="add_to_favorites">Add favorite</string>
+    <string name="toolbar_logo_desc">Logo</string>
+    <string name="toolbar_search_desc">Search</string>
+    <string name="toolbar_theme_desc">Theme</string>
+    <string name="toolbar_inbox_desc">Downloads</string>
+    <string name="banner_carousel_desc">Banner Image</string>
 </resources>

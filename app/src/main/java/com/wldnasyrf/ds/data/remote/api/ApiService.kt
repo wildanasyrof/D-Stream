@@ -3,6 +3,7 @@ package com.wldnasyrf.ds.data.remote.api
 import com.wldnasyrf.ds.data.remote.model.ApiResponse
 import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.Category
 import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginResponse
@@ -28,6 +29,9 @@ interface ApiService {
 
     @GET("anime/{id}")
     suspend fun getAnimeDetail(@Path("id") id: Int): ApiResponse<AnimeDetail>
+
+    @GET("category")
+    suspend fun getCategory() : ApiResponse<List<Category>>
 
     @POST("user/favorite")
     suspend fun addFavorite(@Body request: FavoriteRequest): ApiResponse<Nothing>

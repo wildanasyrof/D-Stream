@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeAdapter: HomePagingAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var trendingAdapter: HomeAdapter
     private lateinit var ongoingAdapter: HomeAdapter
     private lateinit var recommendedAdapter: HomeAdapter
@@ -49,13 +50,63 @@ class HomeFragment : Fragment() {
 
 //        setupRecyclerView()
         setupRecyclerViews()
+        observeCategory()
         observeAnimeList()
     }
 
+    private fun observeCategory() {
+        viewModel.animeRecommended.observe(viewLifecycleOwner, Observer { result ->
+            handleAnimeResult(result, recommendedAdapter)
+        })
+        viewModel.category.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is Result.Error -> {
+
+                }
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    val listCategory = result.data.data
+                    categoryAdapter.submitList(listCategory)
+                }
+            }
+
+        })
+    }
+
     private fun setupRecyclerViews() {
-        trendingAdapter = HomeAdapter()
-        ongoingAdapter = HomeAdapter()
-        recommendedAdapter = HomeAdapter()
+
+        categoryAdapter = CategoryAdapter { catId ->
+            // Handle click and open DetailActivity
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("ANIME_ID", catId)
+            startActivity(intent)
+        }
+
+        trendingAdapter = HomeAdapter { animeId ->
+            // Handle click and open DetailActivity
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("ANIME_ID", animeId)
+            startActivity(intent)
+        }
+        ongoingAdapter = HomeAdapter { animeId ->
+            // Handle click and open DetailActivity
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("ANIME_ID", animeId)
+            startActivity(intent)
+        }
+        recommendedAdapter = HomeAdapter { animeId ->
+            // Handle click and open DetailActivity
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("ANIME_ID", animeId)
+            startActivity(intent)
+        }
+
+        binding.rvCategory.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = categoryAdapter
+        }
 
         binding.rvTrending.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -102,7 +153,7 @@ class HomeFragment : Fragment() {
             handleAnimeResult(result, ongoingAdapter)
         })
 
-        viewModel.animeRecomended.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.animeRecommended.observe(viewLifecycleOwner, Observer { result ->
             handleAnimeResult(result, recommendedAdapter)
         })
     }

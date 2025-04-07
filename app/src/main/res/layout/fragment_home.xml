@@ -5,71 +5,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="4dp"
     tools:context=".ui.main.home.HomeFragment">
 
-    <!-- AppBarLayout: Will Hide/Show Toolbar + Buttons on Scroll -->
+    <!-- Modified Toolbar Section -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        app:elevation="4dp">
+        android:background="@color/grey"
+        app:elevation="16dp">
 
-        <!-- Toolbar (Title Bar) -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:background="@color/grey"
+            app:contentInsetStart="16dp"
+            app:contentInsetEnd="8dp">
 
-            <TextView
-                android:id="@+id/tvTitle"
+            <!-- Logo or brand name on the left -->
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="96dp"
+                android:layout_height="26dp"
+                android:layout_gravity="start|center_vertical"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/toolbar_logo_desc"
+                android:src="@drawable/ic_logo_dsp666"/>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:gravity="center_vertical"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Search Button -->
+                <ImageButton
+                    android:id="@+id/btnSearch"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_toolbar_button"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="@string/toolbar_search_desc" />
+
+                <!-- Theme Button -->
+                <ImageButton
+                    android:id="@+id/btnTheme"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_toolbar_button"
+                    android:src="@drawable/ic_moon"
+                    android:contentDescription="@string/toolbar_theme_desc" />
+
+                <!-- Downloads Button -->
+                <ImageButton
+                    android:id="@+id/btnDownloads"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_toolbar_button"
+                    android:src="@drawable/ic_inbox"
+                    android:contentDescription="@string/toolbar_inbox_desc" />
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-
-        <!-- Buttons: Crime, Adventure, More (Disappear on Scroll) -->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="8dp"-->
-<!--            app:layout_scrollFlags="scroll|enterAlways">-->
-
-<!--            <Button-->
-<!--                android:id="@+id/btnCrime"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Crime"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:layout_marginEnd="8dp"/>-->
-
-<!--            <Button-->
-<!--                android:id="@+id/btnAdventure"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Adventure"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:layout_marginEnd="8dp"/>-->
-
-<!--            <Button-->
-<!--                android:id="@+id/btnMore"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="More"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"/>-->
-<!--        </LinearLayout>-->
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Scrollable Content -->
@@ -89,11 +90,21 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_banner"
                 android:layout_width="match_parent"
-                android:layout_height="521dp"
-                android:layout_marginHorizontal="16dp"/>
+                android:layout_height="250dp"
+                android:contentDescription="@string/banner_carousel_desc" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:overScrollMode="never"
+                android:importantForAccessibility="no"
+                tools:listitem="@layout/item_category" />
 
             <!-- Trending Section -->
             <TextView
+                android:id="@+id/tv_trending_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Trending"
@@ -101,7 +112,7 @@
                 android:textStyle="bold"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trending"
@@ -109,10 +120,12 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
-                tools:listitem="@layout/item_anime_home"/>
+                android:importantForAccessibility="no"
+                tools:listitem="@layout/item_anime_home" />
 
             <!-- New Release Section -->
             <TextView
+                android:id="@+id/tv_new_release_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Release"
@@ -120,7 +133,7 @@
                 android:textStyle="bold"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_Ongoing"
@@ -128,10 +141,12 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
-                tools:listitem="@layout/item_anime_home"/>
+                android:importantForAccessibility="no"
+                tools:listitem="@layout/item_anime_home" />
 
             <!-- Recommended Section -->
             <TextView
+                android:id="@+id/tv_recommended_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Recommended"
@@ -139,7 +154,7 @@
                 android:textStyle="bold"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_Recomended"
@@ -148,7 +163,8 @@
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
                 android:paddingHorizontal="4dp"
-                tools:listitem="@layout/item_anime_home"/>
+                android:importantForAccessibility="no"
+                tools:listitem="@layout/item_anime_home" />
 
         </LinearLayout>
 

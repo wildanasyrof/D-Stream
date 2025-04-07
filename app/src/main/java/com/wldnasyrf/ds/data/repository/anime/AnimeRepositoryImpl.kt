@@ -15,6 +15,7 @@ import com.wldnasyrf.ds.data.remote.model.ApiResponse
 import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
+import com.wldnasyrf.ds.data.remote.model.anime.Category
 import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.utils.ApiError
 import com.wldnasyrf.ds.utils.Result
@@ -25,6 +26,25 @@ class AnimeRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val favoriteDao: FavoritesDao
 ) : AnimeRepository {
+
+    override fun getCategory(): LiveData<Result<ApiResponse<List<Category>>>> = liveData {
+        emit(Result.Loading)
+
+        try {
+            val response = apiService.getCategory()
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val errorResponse = ApiError.parseError(e)
+            Log.e("AnimeRepository", "GetCategory error: ${errorResponse.error}")
+            emit(Result.Error(errorResponse.message))
+        } catch (e: Throwable) {
+            Log.e("AnimeRepository", "Network error: $e")
+            ApiResponse(status = "error", message = e.localizedMessage?.toString() ?: "Network Error!", data = null)
+            Log.e("AnimeRepository", "GetCategory error: ${e.localizedMessage?.toString() ?: "Network Error!"}")
+            emit(Result.Error(e.localizedMessage?.toString() ?: "Network Error!"))
+        }
+    }
+
     override fun getAnimeList(): LiveData<PagingData<AnimeData>> {
         return Pager(
             config = PagingConfig(

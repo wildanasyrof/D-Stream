@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.databinding.ItemAnimeHomeBinding
 
-class HomeAdapter : ListAdapter<AnimeData, HomeAdapter.AnimeViewHolder>(AnimeDiffCallback()) {
+class HomeAdapter (private val onItemClick: (Int) -> Unit) : ListAdapter<AnimeData, HomeAdapter.AnimeViewHolder>(AnimeDiffCallback()) {
 
-    class AnimeViewHolder(private val binding: ItemAnimeHomeBinding) :
+    inner class AnimeViewHolder(private val binding: ItemAnimeHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(anime: AnimeData) {
             // Load image using Glide
@@ -20,7 +20,7 @@ class HomeAdapter : ListAdapter<AnimeData, HomeAdapter.AnimeViewHolder>(AnimeDif
                 .into(binding.ivPlace)
 
             binding.root.setOnClickListener {
-                // Handle item click if needed
+                onItemClick(anime.id)
             }
         }
     }
