@@ -1,140 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_primary"
+    android:background="@android:color/transparent"
     tools:context=".ui.detail.OverviewFragment">
 
-    <LinearLayout
+    <!-- Main content area with scrollable content -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/TextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/fo_nunito_sans_extra_bold"
-            android:text="@string/anime_title"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/tv_alt_title"
-            style="@style/TextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="4dp"
-            android:fontFamily="@font/fo_nunito_sans_reguler"
-            android:text="@string/anime_alt_title"
-            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="@dimen/spacing_xl">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_md">
+
+                <!-- IMDb Rating -->
+                <LinearLayout
+                    android:id="@+id/imdb_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/divider1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/placeholder_value_rating1"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_md"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_imdb_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/placeholder_value_rating2"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_md" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rating"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- First Divider -->
+                <TextView
+                    android:id="@+id/divider1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:text="|"
+                    android:textColor="@color/text_primary"
+                    app:layout_constraintBottom_toBottomOf="@id/imdb_container"
+                    app:layout_constraintEnd_toStartOf="@+id/chapters_container"
+                    app:layout_constraintStart_toEndOf="@+id/imdb_container"
+                    app:layout_constraintTop_toTopOf="@id/imdb_container" />
+
+                <!-- Chapters -->
+                <LinearLayout
+                    android:id="@+id/chapters_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/divider2"
+                    app:layout_constraintStart_toEndOf="@+id/divider1"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_chapters"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/placeholder_value_chapters"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_md"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chapter"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Second Divider -->
+                <TextView
+                    android:id="@+id/divider2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:text="|"
+                    android:textColor="@color/text_primary"
+                    app:layout_constraintBottom_toBottomOf="@id/chapters_container"
+                    app:layout_constraintEnd_toStartOf="@+id/studio_container"
+                    app:layout_constraintStart_toEndOf="@+id/chapters_container"
+                    app:layout_constraintTop_toTopOf="@id/chapters_container" />
+
+                <!-- Studio -->
+                <LinearLayout
+                    android:id="@+id/studio_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/divider2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/placeholder_value_year"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_md"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Year"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Title section -->
             <TextView
-                android:id="@+id/tv_rating"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/fo_nunito_sans_light"
-                android:text="@string/placeholder_value_rating"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/fo_nunito_sans_extra_bold"
+                android:text="@string/anime_title"
                 android:textColor="@color/text_primary"
-                android:textSize="14sp" />
+                android:textSize="24sp"
+                android:gravity="center"/>
 
-            <ImageView
+            <TextView
+                android:id="@+id/tv_alt_title"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/content_desc_icon_rating"
-                android:src="@drawable/star" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/fo_nunito_sans_reguler"
+                android:text="@string/anime_alt_title"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:gravity="center"/>
 
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_chapters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/fo_nunito_sans_light"
-            android:text="@string/placeholder_value_chapters"
-            android:textColor="@color/text_primary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_studio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/fo_nunito_sans_light"
-            android:text="@string/placeholder_value_studio"
-            android:textColor="@color/text_primary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/fo_nunito_sans_light"
-            android:text="@string/placeholder_value_year"
-            android:textColor="@color/text_primary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/synopsis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:fontFamily="@font/fo_nunito_sans_light"
-            android:text="@string/placeholder_value_synopsis"
-            android:textColor="@color/text_primary"
-            android:textSize="14sp" />
-
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <!-- Year -->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_studio"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/fo_nunito_sans_light"-->
+<!--                android:text="@string/placeholder_value_studio"-->
+<!--                android:textColor="@color/text_primary"-->
+<!--                android:textSize="16sp"-->
+<!--                android:gravity="center"/>-->
 
             <LinearLayout
+                android:id="@+id/categories_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp" />
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/tv_description"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/fo_nunito_sans_reguler"
+                android:paddingBottom="12dp"
+                android:text="Chihiro, a sullen 10-year-old girl, stumbles into a world ruled by gods, witches, and spirits, where humans are changed into beasts."
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textAlignment="center"/>
 
-                <TextView
-                    android:id="@+id/tv_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="32dp"
-                    android:fontFamily="@font/fo_nunito_sans_reguler"
-                    android:paddingBottom="12dp"
-                    android:text="@string/tmp_description"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
+            <!-- Bottom spacer -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+        </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp" />
+    </ScrollView>
 
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/bottom_white_gradient"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Bottom button container -->
+    <LinearLayout
         android:id="@+id/container_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:gravity="center"
+        android:background="?attr/selectableItemBackground"
         android:paddingHorizontal="32dp"
         android:paddingVertical="12dp"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -142,28 +237,22 @@
         <Button
             android:id="@+id/btn_watch_now"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:background="@drawable/style_button2"
-            android:text="@string/watch_now"
-            android:textColor="@color/button_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_favourite"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Watch Now"
+            android:textColor="@color/divider"
+            android:gravity="center"/>
 
         <ImageButton
             android:id="@+id/btn_favourite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/style_button2"
-            android:contentDescription="@string/button_favourite"
-            android:padding="18dp"
+            android:contentDescription="Favourite"
+            android:padding="12dp"
             android:src="@drawable/ic_favourite_border"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_watch_now"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_watch_now"
-            app:tint="@color/button_background" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+            app:tint="@color/divider"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

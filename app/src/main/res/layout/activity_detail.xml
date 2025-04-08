@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/iv_anime_image"
         android:layout_width="match_parent"
-        android:layout_height="335dp"
+        android:layout_height="360dp"
         android:contentDescription="@string/content_desc_photo_on_detail"
         android:foreground="@drawable/bg_bottom_gradient_shadow"
         android:scaleType="fitCenter"
@@ -43,6 +43,7 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             app:layout_constraintTop_toTopOf="parent" />
 
 

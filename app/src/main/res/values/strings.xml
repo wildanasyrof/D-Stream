@@ -17,11 +17,12 @@
     //OverviewFragment
     <string name="anime_title">Title of the Anime</string>
     <string name="anime_alt_title">Alt title of the Anime</string>
-    <string name="placeholder_value_rating">Rating : %s</string>
+    <string name="placeholder_value_rating1">4.3</string>
+    <string name="placeholder_value_rating2">/5.0</string>
     <string name="content_desc_icon_rating">Icon Rating</string>
-    <string name="placeholder_value_chapters">Chapters : %s</string>
-    <string name="placeholder_value_studio">Studio : %s</string>
-    <string name="placeholder_value_year">Year : %s</string>
+    <string name="placeholder_value_chapters">Movie (1 ep)</string>
+    <string name="placeholder_value_studio">Sunrise</string>
+    <string name="placeholder_value_year">2022</string>
     <string name="placeholder_value_synopsis">Synopsis :</string>
     <string name="tmp_description">Description from anime</string>
     <string name="tv_account">Account</string>

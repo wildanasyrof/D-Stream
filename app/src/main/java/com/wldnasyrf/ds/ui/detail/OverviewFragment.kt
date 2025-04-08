@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
 import com.wldnasyrf.ds.databinding.FragmentOverviewBinding
+import com.wldnasyrf.ds.ui.customView.CategoryChipView
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -73,10 +74,18 @@ class OverviewFragment : Fragment() {
             tvTitle.text = title
             tvAltTitle.text = altTitles
             tvChapters.text = chapters
-            tvStudio.text = studio
+//            tvStudio.text = studio
             tvYear.text = year
             tvRating.text = rating.toString()
             tvDescription.text = synopsis
+
+            categories.forEach { category ->
+                val chip = CategoryChipView(requireContext()).apply {
+                    text = category.name
+                }
+
+                categoriesContainer.addView(chip)
+            }
         }
 
         val episodeFragment = EpisodeFragment.newInstance(animeDetail.id, animeDetail.title)
