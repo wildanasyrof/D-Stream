@@ -2,12 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="#e0e0e0" />
+    <solid android:color="@color/background_secondary" />
 
-    <corners android:radius="8dp" />
+    <corners android:radius="?attr/cornerRadiusMedium" />
 
     <!-- Add outline stroke -->
     <stroke
-        android:width="0.5dp"
-        android:color="#9e9e9e" />
+        android:width="1dp"
+        android:color="@color/border" />
 </shape>

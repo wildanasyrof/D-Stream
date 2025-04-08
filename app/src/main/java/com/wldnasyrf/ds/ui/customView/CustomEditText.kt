@@ -125,7 +125,7 @@ class CustomEditText: AppCompatEditText, View.OnTouchListener {
             val eyeButtonEnd: Float
             var isEyeButtonClicked = false
 
-            if (layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+            if (layoutDirection == LAYOUT_DIRECTION_RTL) {
                 eyeButtonEnd = (eyeIcon.intrinsicWidth + paddingStart).toFloat()
                 if (event.x < eyeButtonEnd) isEyeButtonClicked = true
             } else {

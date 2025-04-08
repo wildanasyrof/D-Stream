@@ -6,23 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.wldnasyrf.ds.adapter.HomeAdapter
-import com.wldnasyrf.ds.adapter.HomeLoadStateAdapter
-import com.wldnasyrf.ds.adapter.HomePagingAdapter
 import com.wldnasyrf.ds.data.remote.model.ApiResponse
 import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.databinding.FragmentHomeBinding
 import com.wldnasyrf.ds.ui.detail.DetailActivity
-import dagger.hilt.android.AndroidEntryPoint
 import com.wldnasyrf.ds.utils.Result
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -30,7 +25,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var homeAdapter: HomePagingAdapter
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var trendingAdapter: HomeAdapter
     private lateinit var ongoingAdapter: HomeAdapter
@@ -118,7 +112,7 @@ class HomeFragment : Fragment() {
             adapter = ongoingAdapter
         }
 
-        binding.rvRecomended.apply {
+        binding.rvRecommended.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = recommendedAdapter
         }
@@ -176,7 +170,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupBanner(animeList: List<AnimeData>) {
-        bannerAdapter = BannerAdapter(animeList)
+        bannerAdapter = BannerAdapter(
+            animeList = animeList,
+            onWatchClickListener = { anime ->
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("ANIME_ID", anime.id)
+                intent.putExtra("FRAGMENT_ID", 1)
+                startActivity(intent)
+            },
+            onDetailClickListener = { anime ->
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("ANIME_ID", anime.id)
+                startActivity(intent)
+            }
+        )
         binding.vpBanner.adapter = bannerAdapter
     }
 //

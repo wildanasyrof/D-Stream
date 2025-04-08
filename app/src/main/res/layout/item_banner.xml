@@ -1,31 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    app:cardCornerRadius="?attr/cornerRadiusMedium"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true">
 
-    <!-- CardView for Rounded Corners -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="8dp"
-        app:cardUseCompatPadding="true"
-        app:cardPreventCornerOverlap="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_height="match_parent">
 
-        <!-- ImageView inside CardView -->
-        <ImageView
-            android:id="@+id/ivCarouselImage"
+        <!-- FrameLayout to contain both Image and Gradient -->
+        <FrameLayout
+            android:id="@+id/frameLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/app_name"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.cardview.widget.CardView>
+            <!-- ImageView -->
+            <ImageView
+                android:id="@+id/ivCarouselImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Diagonal Gradient Overlay -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bottom_black_gradient" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fo_nunito_sans_extra_bold"
+            android:text="@string/anime_title"
+            android:textSize="@dimen/text_lg"
+            android:textColor="@color/divider"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Search Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_watch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:backgroundTint="@color/button_background_70"
+                android:paddingHorizontal="@dimen/spacing_lg"
+                android:paddingVertical="@dimen/spacing_sm"
+                app:icon="@drawable/ic_play"
+                app:iconTint="@color/divider"
+                android:text="@string/banner_btn_watch"
+                android:textAllCaps="false"
+                android:textColor="@color/divider"
+                android:textSize="@dimen/text_sm"
+                app:cornerRadius="?attr/cornerRadiusExtraLarge"
+                app:strokeColor="@color/divider"
+                app:strokeWidth="0.5dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/button_background_70"
+                android:paddingHorizontal="@dimen/spacing_lg"
+                android:paddingVertical="@dimen/spacing_sm"
+                app:icon="@drawable/ic_detail"
+                app:iconTint="@color/divider"
+                android:text="@string/banner_btn_anime_detail"
+                android:textAllCaps="false"
+                android:textColor="@color/divider"
+                android:textSize="@dimen/text_sm"
+                app:cornerRadius="?attr/cornerRadiusExtraLarge"
+                app:strokeColor="@color/divider"
+                app:strokeWidth="0.5dp" />
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

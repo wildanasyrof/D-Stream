@@ -32,7 +32,7 @@ class CustomButton : AppCompatButton {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         background = if(isEnabled) enabledBackground else disabledBackground
-        setTextColor(ContextCompat.getColor(context, R.color.white))
+        setTextColor(ContextCompat.getColor(context, R.color.text_secondary))
 
     }
 

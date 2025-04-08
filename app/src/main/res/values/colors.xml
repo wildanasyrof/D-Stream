@@ -1,32 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="orange_50">#FAE8E7</color>
-    <color name="orange_100">#FDc9bb</color>
-    <color name="orange_200">#FCA590</color>
-    <color name="orange_400">#FA6643</color>
-    <color name="orange_500">#F94724</color>
-    <color name="orange_700">#E31B1B</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="dark_purple">#06093D</color>
-    <color name="black_50">#FF3C3C3C</color>
-    <color name="black_100">#1E1F25</color>
-    <color name="black_200">#131517</color>
-    <color name="black">#FF000000</color>
-    <color name="grey_400">#CCCCCC</color>
-    <color name="grey_500">#CAD5E2</color>
-    <color name="grey">#F5F5F5</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="red_200">#CF212A</color>
-    <color name="red_soft">#FA5757</color>
+    <!-- Primary brand colors -->
+    <color name="primary">#F44336</color>
+    <color name="primary_variant">#F44336</color>
+    <color name="accent">#F44336</color>
 
-    <color name="shadowColor">#4D22292E</color>
-    <color name="statusBarColor">#DBDBDB</color>
-    <color name="backgroundColorField">#F1F6FB</color>
-    <color name="textColorPrimary">#06093D</color>
-    <color name="textColorCaption">#848484</color>
-    <color name="textColorCaption2">#A29EB6</color>
-    <color name="textColorSecondary">#C2C2C2</color>
-    <color name="colorDivider">#77B1B1B1</color>
-    <color name="colorOverlay">#74000000</color>
+    <!-- Status colors -->
+    <color name="status_success">#ff8c00</color>
+    <color name="status_error">#ef4444</color>
+    <color name="status_warning">#f59e0b</color>
+    <color name="status_info">#3b82f6</color>
+
+    <!-- UI colors - light theme -->
+    <color name="background_primary">#f5f5f5</color>
+    <color name="background_secondary">#e0e0e0</color>
+    <color name="background_tertiary">#dcdcdc</color>
+    <color name="surface">#eeeeee</color>
+    <color name="on_surface">#333333</color>
+    <color name="surface_variant">#e8e8e8</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#888888</color>
+    <color name="text_tertiary">#696969</color>
+    <color name="text_highlight">#3db4f2</color>
+
+    <!-- Divider and border colors -->
+    <color name="divider">#e0e0e0</color>
+    <color name="divider_variant">#eaeaea</color>
+    <color name="border">#1A080808</color>
+
+    <!-- Element colors -->
+    <color name="button_background">#dcdcdc</color>
+    <color name="button_background_70">#26DCDCDC</color>
+    <color name="button_text">#333333</color>
+    <color name="button_pressed">#cfcfcf</color>
+    <color name="card_background">#eeeeee</color>
+    <color name="card_header">#e8e8e8</color>
+
+    <!-- Shadow colors -->
+    <color name="shadow_light">#26000000</color>
+    <color name="shadow_medium">#4D000000</color>
+    <color name="shadow_heavy">#80000000</color>
+
+    <!-- Skeleton/loading colors -->
+    <color name="skeleton_primary">#1Aa5a5a5</color>
+    <color name="skeleton_secondary">#4Da5a5a5</color>
+
+    <!-- Status indicators -->
+    <color name="indicator_ongoing">#aaff00</color>
+    <color name="indicator_completed">#00aaff</color>
+    <color name="indicator_cancelled">#ff0000</color>
+    <color name="indicator_pending">#ffa500</color>
+
+    <!-- Overlay colors -->
+    <color name="overlay_light">#CCffffff</color>
 </resources>

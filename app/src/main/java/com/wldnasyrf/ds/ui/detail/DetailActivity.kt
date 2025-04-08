@@ -34,11 +34,12 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val animeId = intent.getIntExtra("ANIME_ID", 0)
+        val fragment = intent.getIntExtra("FRAGMENT_ID", 0)
         Log.e("ANIME_ID", "Data: $animeId")
 
         setupView()
         observeAnimeDetail(animeId)
-        fragmentSetup(savedInstanceState)
+        fragmentSetup(savedInstanceState, fragment)
     }
 
     private fun setupView() {
@@ -62,9 +63,12 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.title = ""
     }
 
-    private fun fragmentSetup(savedInstanceState: Bundle?) {
+    private fun fragmentSetup(savedInstanceState: Bundle?, fragment: Int) {
         if (savedInstanceState == null) {
-            val fragment = OverviewFragment() // Your fragment
+            val fragment = when (fragment) {
+                1 -> EpisodeFragment()
+                else -> OverviewFragment()
+            }
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit()

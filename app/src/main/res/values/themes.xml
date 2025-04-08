@@ -1,21 +1,69 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.DS" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/orange_400</item>
-        <item name="colorPrimaryVariant">@color/grey</item>
-        <item name="colorOnPrimary">@color/dark_purple</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/orange_400</item>
-        <item name="colorSecondaryVariant">@color/grey</item>
-        <item name="colorOnSecondary">@color/backgroundColorField</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Base.Theme.DS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Material 3 color attributes -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="android:colorBackground">@color/background_primary</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="colorError">@color/status_error</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/background_secondary</item>
+        <item name="android:navigationBarColor">@color/background_secondary</item>
+
+        <!-- Text appearance -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorTertiary">@color/text_tertiary</item>
+
+        <!-- Dimensions -->
+        <item name="cornerRadiusSmall">4dp</item>
+        <item name="cornerRadiusMedium">8dp</item>
+        <item name="cornerRadiusLarge">16dp</item>
+        <item name="cornerRadiusExtraLarge">32dp</item>
+    </style>
+
+    <!-- Button styles -->
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/button_text</item>
+        <item name="backgroundTint">@color/button_background</item>
+        <item name="rippleColor">@color/button_pressed</item>
+        <item name="cornerRadius">?attr/cornerRadiusMedium</item>
+    </style>
+
+    <!-- Card styles -->
+    <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">?attr/cornerRadiusMedium</item>
+    </style>
+
+    <!-- For icon buttons in toolbar -->
+    <style name="Widget.App.Button.IconOnly" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="iconTint">@color/text_primary</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/button_pressed</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:padding">@dimen/spacing_xs</item>
+    </style>
+
+    <!-- For section headers -->
+    <style name="TextAppearance.App.Headline" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/text_lg</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.01</item>
     </style>
 
     <style name="TextViewStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/dark_purple</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="TabLayoutTextAppearance.Selected" parent="TextAppearance.Design.Tab">
@@ -29,8 +77,5 @@
         <item name="android:fontFamily">@font/fo_nunito_sans_light</item>
     </style>
 
-    <style name="CardViewStyle" parent="CardView">
-        <item name="cardBackgroundColor">@color/white</item>
-    </style>
     <style name="Theme.DS" parent="Base.Theme.DS" />
 </resources>

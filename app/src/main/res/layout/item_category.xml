@@ -5,28 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
-    android:layout_marginHorizontal="4dp"
-    app:cardBackgroundColor="@color/colorDivider"
-    app:cardCornerRadius="8dp"
+    android:layout_marginVertical="@dimen/spacing_xs"
+    android:layout_marginHorizontal="@dimen/spacing_xs"
+    app:cardBackgroundColor="@color/background_secondary"
+    app:cardCornerRadius="?attr/cornerRadiusMedium"
     app:cardElevation="0dp"
     tools:targetApi="p">
 
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="24dp"
-    android:paddingVertical="8dp">
+    android:paddingHorizontal="@dimen/spacing_lg"
+    android:paddingVertical="@dimen/spacing_sm">
 
         <TextView
             android:id="@+id/tv_category_name"
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/fo_nunito_sans_reguler"
             android:gravity="center"
-            android:text="@string/title_episode"
-            android:textSize="14sp"
+            android:text="@string/tv_item_category"
+            android:textSize="@dimen/text_sm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

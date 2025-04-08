@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_primary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.profile.ProfileFragment">
 
@@ -37,12 +38,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            style="@style/CardViewStyle"
+            style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginHorizontal="32dp"
-            android:outlineAmbientShadowColor="@color/shadowColor"
-            android:outlineSpotShadowColor="@color/shadowColor"
+            android:outlineAmbientShadowColor="@color/cardview_shadow_start_color"
+            android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
             app:cardCornerRadius="12dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +101,7 @@
                         android:layout_marginStart="12dp"
                         android:fontFamily="@font/fo_nunito_sans_light"
                         android:text="@string/desc_profile_1"
-                        android:textColor="@color/textColorCaption2" />
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -119,12 +120,12 @@
             tools:layout_editor_absoluteX="32dp" />
 
         <androidx.cardview.widget.CardView
-            style="@style/CardViewStyle"
+            style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginHorizontal="32dp"
-            android:outlineAmbientShadowColor="@color/shadowColor"
-            android:outlineSpotShadowColor="@color/shadowColor"
+            android:outlineAmbientShadowColor="@color/cardview_shadow_start_color"
+            android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
             app:cardCornerRadius="12dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +172,7 @@
                         android:maxEms="9"
                         android:maxLines="1"
                         android:text="@string/item_logout"
-                        android:textColor="@color/red_soft"
+                        android:textColor="@color/accent"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -182,7 +183,7 @@
                         android:layout_marginStart="12dp"
                         android:fontFamily="@font/fo_nunito_sans_light"
                         android:text="@string/desc_logout"
-                        android:textColor="@color/textColorCaption2" />
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -201,7 +202,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/fo_nunito_sans_bold"
             android:text="@string/caption_on_login"
-            android:textColor="@color/textColorCaption2"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"

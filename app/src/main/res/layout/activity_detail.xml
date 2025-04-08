@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:alpha="0.6" />
+        android:alpha="0.6"
+        android:contentDescription="@string/detail_blurred_anime_photo_desc"/>
 
     <ImageView
         android:id="@+id/iv_anime_image"
@@ -32,7 +33,7 @@
         android:layout_marginTop="-26dp"
         android:background="@drawable/field_rounded"
         android:orientation="vertical"
-        android:paddingTop="12dp"
+        android:paddingTop="@dimen/spacing_md"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

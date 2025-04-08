@@ -66,4 +66,12 @@
     <string name="toolbar_theme_desc">Theme</string>
     <string name="toolbar_inbox_desc">Downloads</string>
     <string name="banner_carousel_desc">Banner Image</string>
+    <string name="tv_item_category">Adventure</string>
+    <string name="home_tv_trending">Trending</string>
+    <string name="home_tv_new_release">New Release</string>
+    <string name="item_anime_home_iv_desc">Image view item anime home</string>
+    <string name="home_tv_recommended">Recommended</string>
+    <string name="detail_blurred_anime_photo_desc">blurred anime photo</string>
+    <string name="banner_btn_watch">Watch</string>
+    <string name="banner_btn_anime_detail">Anime Detail</string>
 </resources>

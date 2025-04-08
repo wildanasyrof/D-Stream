@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- UI colors - dark theme -->
+    <color name="background_primary">#080808</color>
+    <color name="background_secondary">#141414</color>
+    <color name="background_tertiary">#222222</color>
+    <color name="surface">#181818</color>
+    <color name="on_surface">#e8e8e8</color>
+    <color name="surface_variant">#151515</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#e8e8e8</color>
+    <color name="text_secondary">#aaaaaa</color>
+    <color name="text_tertiary">#696969</color>
+
+    <!-- Divider and border colors -->
+    <color name="divider">#141414</color>
+    <color name="divider_variant">#0e0e0e</color>
+    <color name="border">#1Af5f5f5</color>
+
+    <!-- Element colors -->
+    <color name="button_background">#202020</color>
+    <color name="button_text">#ebebeb</color>
+    <color name="button_pressed">#292929</color>
+    <color name="card_background">#181818</color>
+    <color name="card_header">#151515</color>
+
+    <!-- Shadow colors -->
+    <color name="shadow_light">#80000000</color>
+    <color name="shadow_medium">#99000000</color>
+    <color name="shadow_heavy">#B3000000</color>
+
+    <!-- Skeleton/loading colors -->
+    <color name="skeleton_primary">#66555555</color>
+    <color name="skeleton_secondary">#99555555</color>
+
+    <!-- Overlay colors -->
+    <color name="overlay_light">#CC000000</color>
+
+</resources>

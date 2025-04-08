@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="4dp"
     tools:context=".ui.main.home.HomeFragment">
 
     <!-- Modified Toolbar Section -->
@@ -13,16 +12,16 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey"
+        android:background="@color/surface"
         app:elevation="16dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/grey"
-            app:contentInsetStart="16dp"
-            app:contentInsetEnd="8dp">
+            android:background="@color/surface"
+            app:contentInsetStart="@dimen/spacing_md"
+            app:contentInsetEnd="@dimen/spacing_sm">
 
             <!-- Logo or brand name on the left -->
             <ImageView
@@ -43,31 +42,31 @@
 
                 <!-- Search Button -->
                 <ImageButton
-                    android:id="@+id/btnSearch"
+                    android:id="@+id/btn_search"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_toolbar_button"
+                    android:layout_marginEnd="@dimen/spacing_sm"
                     android:src="@drawable/ic_search"
+                    android:background="@drawable/bg_toolbar_button"
                     android:contentDescription="@string/toolbar_search_desc" />
 
                 <!-- Theme Button -->
                 <ImageButton
-                    android:id="@+id/btnTheme"
+                    android:id="@+id/btn_category"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="@dimen/spacing_sm"
+                    android:src="@drawable/ic_category"
                     android:background="@drawable/bg_toolbar_button"
-                    android:src="@drawable/ic_moon"
                     android:contentDescription="@string/toolbar_theme_desc" />
 
                 <!-- Downloads Button -->
                 <ImageButton
-                    android:id="@+id/btnDownloads"
+                    android:id="@+id/btn_inbox"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="@drawable/bg_toolbar_button"
                     android:src="@drawable/ic_inbox"
+                    android:background="@drawable/bg_toolbar_button"
                     android:contentDescription="@string/toolbar_inbox_desc" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -84,35 +83,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:paddingBottom="@dimen/spacing_md">
 
             <!-- ViewPager2 for Carousel -->
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_banner"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_marginVertical="@dimen/spacing_sm"
                 android:contentDescription="@string/banner_carousel_desc" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_category"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal"
-                android:overScrollMode="never"
-                android:importantForAccessibility="no"
-                tools:listitem="@layout/item_category" />
+                android:paddingHorizontal="@dimen/spacing_md">
+
+                <!-- RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="horizontal" />
+
+                <!-- Left and Right Gradients -->
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="@drawable/left_gradient" />
+
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@drawable/right_gradient" />
+            </FrameLayout>
 
             <!-- Trending Section -->
             <TextView
                 android:id="@+id/tv_trending_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Trending"
-                android:textSize="18sp"
+                android:text="@string/home_tv_trending"
+                android:textSize="@dimen/text_md"
                 android:textStyle="bold"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:textColor="@android:color/black" />
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="@dimen/spacing_xs"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trending"
@@ -121,6 +138,7 @@
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
                 android:importantForAccessibility="no"
+                android:layout_marginBottom="@dimen/spacing_xs"
                 tools:listitem="@layout/item_anime_home" />
 
             <!-- New Release Section -->
@@ -128,12 +146,11 @@
                 android:id="@+id/tv_new_release_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Release"
-                android:textSize="18sp"
+                android:text="@string/home_tv_new_release"
+                android:textSize="@dimen/text_md"
                 android:textStyle="bold"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:textColor="@android:color/black" />
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="@dimen/spacing_xs"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_Ongoing"
@@ -142,6 +159,7 @@
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
                 android:importantForAccessibility="no"
+                android:layout_marginBottom="@dimen/spacing_xs"
                 tools:listitem="@layout/item_anime_home" />
 
             <!-- Recommended Section -->
@@ -149,21 +167,21 @@
                 android:id="@+id/tv_recommended_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recommended"
-                android:textSize="18sp"
+                android:text="@string/home_tv_recommended"
+                android:textSize="@dimen/text_md"
                 android:textStyle="bold"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:textColor="@android:color/black" />
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="@dimen/spacing_xs"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_Recomended"
+                android:id="@+id/rv_Recommended"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
                 android:paddingHorizontal="4dp"
                 android:importantForAccessibility="no"
+                android:layout_marginBottom="@dimen/spacing_xs"
                 tools:listitem="@layout/item_anime_home" />
 
         </LinearLayout>
