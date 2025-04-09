@@ -45,22 +45,26 @@ class AnimeRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getAnimeList(): LiveData<PagingData<AnimeData>> {
+    override fun getAnimeList(category: String?): LiveData<PagingData<AnimeData>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5
+                pageSize = 10,
+                enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                AnimePagingSource(apiService)
+                AnimePagingSource(
+                    apiService = apiService,
+                    category = category
+                )
             }
         ).liveData
     }
 
-    override fun getAnimeData(): LiveData<Result<ApiResponse<Anime>>> = liveData {
+    override fun getAnimeData(category: String?): LiveData<Result<ApiResponse<Anime>>> = liveData {
         emit(Result.Loading)
 
         try {
-            val response = apiService.getAnime()
+            val response = apiService.getAnime(category = category)
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val errorResponse = ApiError.parseError(e)

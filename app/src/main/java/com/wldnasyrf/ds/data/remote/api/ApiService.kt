@@ -24,7 +24,11 @@ interface ApiService {
     @GET("anime")
     suspend fun getAnime(
         @Query("limit") size: Int? = 10,
-        @Query("page") page: Int? = 1
+        @Query("page") page: Int? = 1,
+        @Query("title") title: String? = null,
+        @Query("year") year: String? = null,
+        @Query("studio") studio: String? = null,
+        @Query("category") category: String? = null
     ): ApiResponse<Anime>
 
     @GET("anime/{id}")

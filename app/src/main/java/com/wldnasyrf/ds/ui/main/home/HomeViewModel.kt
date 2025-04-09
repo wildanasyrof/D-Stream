@@ -16,11 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    repository: AnimeRepository): ViewModel(){
+    private val repository: AnimeRepository): ViewModel(){
 
     val category: LiveData<Result<ApiResponse<List<Category>>>> = repository.getCategory()
-    val anime: LiveData<PagingData<AnimeData>> = repository.getAnimeList().cachedIn(viewModelScope)
-    val animeTrending: LiveData<Result<ApiResponse<Anime>>> = repository.getAnimeData()
-    val animeOnGoing: LiveData<Result<ApiResponse<Anime>>> = repository.getAnimeData()
-    val animeRecommended: LiveData<Result<ApiResponse<Anime>>> = repository.getAnimeData()
+
+    fun getAnimeList(category: String?): LiveData<Result<ApiResponse<Anime>>> {
+        return repository.getAnimeData(category)
+    }
 }

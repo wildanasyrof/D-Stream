@@ -5,7 +5,9 @@ import androidx.paging.PagingState
 import com.wldnasyrf.ds.data.remote.api.ApiService
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 
-class AnimePagingSource(private val apiService: ApiService): PagingSource<Int, AnimeData>() {
+class AnimePagingSource(private val apiService: ApiService,
+                        private val category: String? = null
+): PagingSource<Int, AnimeData>() {
 
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
@@ -13,15 +15,19 @@ class AnimePagingSource(private val apiService: ApiService): PagingSource<Int, A
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AnimeData> {
         return try {
-            val position = params.key ?: INITIAL_PAGE_INDEX
-            val responseData = apiService.getAnime(params.loadSize, position)
+            val page = params.key ?: INITIAL_PAGE_INDEX
+            val responseData = apiService.getAnime(
+                size = 10,
+                page = page,
+                category = category
+            )
 
             val animeList = responseData.data?.data ?: emptyList()
 
             LoadResult.Page(
                 data = animeList,
-                prevKey = if (position == INITIAL_PAGE_INDEX) null else position -1,
-                nextKey = if (animeList.isEmpty()) null else position+1
+                prevKey = if (page == INITIAL_PAGE_INDEX) null else page -1,
+                nextKey = if (animeList.isEmpty()) null else page+1
             )
 
         }  catch (exception: Exception) {
@@ -31,8 +37,8 @@ class AnimePagingSource(private val apiService: ApiService): PagingSource<Int, A
 
     override fun getRefreshKey(state: PagingState<Int, AnimeData>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
-            val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 }

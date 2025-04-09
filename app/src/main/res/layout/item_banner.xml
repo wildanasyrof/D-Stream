@@ -80,7 +80,7 @@
                 android:textSize="@dimen/text_sm"
                 app:cornerRadius="?attr/cornerRadiusExtraLarge"
                 app:strokeColor="@color/divider"
-                app:strokeWidth="0.5dp" />
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_detail"
@@ -97,7 +97,7 @@
                 android:textSize="@dimen/text_sm"
                 app:cornerRadius="?attr/cornerRadiusExtraLarge"
                 app:strokeColor="@color/divider"
-                app:strokeWidth="0.5dp" />
+                app:strokeWidth="1dp" />
 
         </LinearLayout>
 

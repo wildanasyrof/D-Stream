@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.wldnasyrf.ds.adapter.FavoriteAdapter
 import com.wldnasyrf.ds.databinding.FragmentFavoriteBinding
 import com.wldnasyrf.ds.ui.detail.DetailActivity
@@ -49,7 +50,7 @@ class FavoriteFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.rvFavorite.layoutManager = GridLayoutManager(requireContext(), 2) // 3 columns
+        binding.rvFavorite.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavorite.adapter = favoriteAdapter
     }
 

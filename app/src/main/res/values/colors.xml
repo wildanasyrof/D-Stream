@@ -16,6 +16,7 @@
     <color name="background_secondary">#e0e0e0</color>
     <color name="background_tertiary">#dcdcdc</color>
     <color name="surface">#eeeeee</color>
+    <color name="surface_translucent">#9AEEEEEE</color>
     <color name="on_surface">#333333</color>
     <color name="surface_variant">#e8e8e8</color>
 

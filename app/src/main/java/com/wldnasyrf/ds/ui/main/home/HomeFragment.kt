@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.wldnasyrf.ds.adapter.HomeAdapter
-import com.wldnasyrf.ds.data.remote.model.ApiResponse
-import com.wldnasyrf.ds.data.remote.model.anime.Anime
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeData
 import com.wldnasyrf.ds.databinding.FragmentHomeBinding
+import com.wldnasyrf.ds.ui.animeList.AnimeListActivity
 import com.wldnasyrf.ds.ui.detail.DetailActivity
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +24,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
+
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var trendingAdapter: HomeAdapter
     private lateinit var ongoingAdapter: HomeAdapter
@@ -34,88 +34,35 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    ): View = FragmentHomeBinding.inflate(inflater, container, false).also {
+        _binding = it
+    }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        setupRecyclerView()
+        initAdapters()
         setupRecyclerViews()
-        observeCategory()
-        observeAnimeList()
+        observeCategoryData()
+        observeAnimeSections()
+        setupClickListeners()
     }
 
-    private fun observeCategory() {
-        viewModel.animeRecommended.observe(viewLifecycleOwner, Observer { result ->
-            handleAnimeResult(result, recommendedAdapter)
-        })
-        viewModel.category.observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is Result.Error -> {
+    private fun initAdapters() {
+        categoryAdapter = CategoryAdapter { category ->
+            navigateToAnimeList(category.name)
+        }
 
-                }
-                is Result.Loading -> {
-
-                }
-                is Result.Success -> {
-                    val listCategory = result.data.data
-                    categoryAdapter.submitList(listCategory)
-                }
-            }
-
-        })
+        trendingAdapter = createAnimeAdapter()
+        ongoingAdapter = createAnimeAdapter()
+        recommendedAdapter = createAnimeAdapter()
     }
 
     private fun setupRecyclerViews() {
-
-        categoryAdapter = CategoryAdapter { catId ->
-            // Handle click and open DetailActivity
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("ANIME_ID", catId)
-            startActivity(intent)
-        }
-
-        trendingAdapter = HomeAdapter { animeId ->
-            // Handle click and open DetailActivity
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("ANIME_ID", animeId)
-            startActivity(intent)
-        }
-        ongoingAdapter = HomeAdapter { animeId ->
-            // Handle click and open DetailActivity
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("ANIME_ID", animeId)
-            startActivity(intent)
-        }
-        recommendedAdapter = HomeAdapter { animeId ->
-            // Handle click and open DetailActivity
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("ANIME_ID", animeId)
-            startActivity(intent)
-        }
-
-        binding.rvCategory.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = categoryAdapter
-        }
-
-        binding.rvTrending.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = trendingAdapter
-        }
-
-        binding.rvOngoing.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ongoingAdapter
-        }
-
-        binding.rvRecommended.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = recommendedAdapter
-        }
+        binding.rvCategory.setupHorizontal(categoryAdapter)
+        binding.rvTrending.setupHorizontal(trendingAdapter)
+        binding.rvOngoing.setupHorizontal(ongoingAdapter)
+        binding.rvRecommended.setupHorizontal(recommendedAdapter)
 
         binding.vpBanner.apply {
             offscreenPageLimit = 3
@@ -124,91 +71,87 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-//    private fun setupRecyclerView(recyclerView: RecyclerView, adapter: HomeAdapter) {
-//        recyclerView.layoutManager =
-//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        recyclerView.adapter = adapter
-//    }
-
-    private fun observeAnimeList() {
-//        viewModel.anime.observe(viewLifecycleOwner) {
-//            homeAdapter.submitData(lifecycle, it)
-//        }
-
-        viewModel.animeTrending.observe(viewLifecycleOwner, Observer { result ->
-            handleAnimeResult(result, trendingAdapter)
-            if (result is Result.Success) {
-                setupBanner(result.data.data?.data!!)
-            }
-        })
-
-        viewModel.animeOnGoing.observe(viewLifecycleOwner, Observer { result ->
-            handleAnimeResult(result, ongoingAdapter)
-        })
-
-        viewModel.animeRecommended.observe(viewLifecycleOwner, Observer { result ->
-            handleAnimeResult(result, recommendedAdapter)
-        })
-    }
-
-    private fun handleAnimeResult(result: Result<ApiResponse<Anime>>, adapter: HomeAdapter) {
-        when (result) {
-            is Result.Loading -> {
-//                binding.progressBar.visibility = View.VISIBLE
-            }
-            is Result.Success -> {
-//                binding.progressBar.visibility = View.GONE
-                val animeList = result.data.data?.data // Assuming response has a list
-                adapter.submitList(animeList)
-            }
-            is Result.Error -> {
-//                binding.progressBar.visibility = View.GONE
-                Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
+    private fun observeCategoryData() {
+        viewModel.category.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> categoryAdapter.submitList(result.data.data)
+                else -> {} // Handle loading/error if needed
             }
         }
     }
 
-    private fun setupBanner(animeList: List<AnimeData>) {
+    private fun observeAnimeSections() {
+        observeAnimeByCategory("Action", trendingAdapter, true)
+        observeAnimeByCategory("Fantasy", ongoingAdapter)
+        observeAnimeByCategory("Drama", recommendedAdapter)
+    }
+
+    private fun observeAnimeByCategory(
+        category: String,
+        adapter: HomeAdapter,
+        setupBanner: Boolean = false
+    ) {
+        viewModel.getAnimeList(category).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    val animeList = result.data.data?.data.orEmpty()
+                    adapter.submitList(animeList)
+                    if (setupBanner) initBanner(animeList)
+                }
+                is Result.Error -> showToast(result.message)
+                is Result.Loading -> {} // Optional: show loading state
+            }
+        }
+    }
+
+    private fun setupClickListeners() {
+        binding.btnSearch.setOnClickListener {
+            navigateToAnimeList("Trending")
+        }
+    }
+
+    private fun navigateToAnimeList(query: String) {
+        val intent = Intent(requireContext(), AnimeListActivity::class.java).apply {
+            putExtra("QUERY", query)
+        }
+        startActivity(intent)
+    }
+
+    private fun createAnimeAdapter(): HomeAdapter {
+        return HomeAdapter { animeId ->
+            val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                putExtra("ANIME_ID", animeId)
+            }
+            startActivity(intent)
+        }
+    }
+
+    private fun initBanner(animeList: List<AnimeData>) {
         bannerAdapter = BannerAdapter(
             animeList = animeList,
-            onWatchClickListener = { anime ->
-                val intent = Intent(requireContext(), DetailActivity::class.java)
-                intent.putExtra("ANIME_ID", anime.id)
-                intent.putExtra("FRAGMENT_ID", 1)
-                startActivity(intent)
-            },
-            onDetailClickListener = { anime ->
-                val intent = Intent(requireContext(), DetailActivity::class.java)
-                intent.putExtra("ANIME_ID", anime.id)
-                startActivity(intent)
-            }
+            onWatchClickListener = { anime -> navigateToDetail(anime.id, fragmentId = 1) },
+            onDetailClickListener = { anime -> navigateToDetail(anime.id) }
         )
         binding.vpBanner.adapter = bannerAdapter
     }
-//
-//    private fun setupRecyclerView() {
-//        homeAdapter = HomePagingAdapter { animeId ->
-//            // Handle click and open DetailActivity
-//            val intent = Intent(requireContext(), DetailActivity::class.java)
-//            intent.putExtra("ANIME_ID", animeId)
-//            startActivity(intent)
-//        }
-//
-//        homeAdapter.addLoadStateListener { loadState ->
-//            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-//            binding.retryButton.isVisible = loadState.source.refresh is LoadState.Error
-//            binding.retryButton.setOnClickListener { homeAdapter.retry() }
-//        }
-//
-//        binding.recyclerView.apply {
-//            layoutManager = LinearLayoutManager(requireContext())
-//            adapter = homeAdapter.withLoadStateHeaderAndFooter(
-//                header = HomeLoadStateAdapter { homeAdapter.retry() },
-//                footer = HomeLoadStateAdapter { homeAdapter.retry() }
-//            )
-//        }
-//    }
+
+    private fun navigateToDetail(animeId: Int, fragmentId: Int? = null) {
+        val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+            putExtra("ANIME_ID", animeId)
+            fragmentId?.let { putExtra("FRAGMENT_ID", it) }
+        }
+        startActivity(intent)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun RecyclerView.setupHorizontal(adapter: RecyclerView.Adapter<*>) {
+        layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        this.adapter = adapter
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

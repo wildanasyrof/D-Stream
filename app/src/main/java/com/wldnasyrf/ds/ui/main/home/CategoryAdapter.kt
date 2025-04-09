@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wldnasyrf.ds.data.remote.model.anime.Category
 import com.wldnasyrf.ds.databinding.ItemCategoryBinding
 
-class CategoryAdapter (private val onItemClick: (Int) -> Unit) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(CategoryDiffCallback()) {
+class CategoryAdapter (private val onItemClick: (Category) -> Unit) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(CategoryDiffCallback()) {
     inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(category: Category) {
             binding.tvCategoryName.text = category.name
             binding.root.setOnClickListener {
-                onItemClick(category.id)
+                onItemClick(category)
             }
         }
     }

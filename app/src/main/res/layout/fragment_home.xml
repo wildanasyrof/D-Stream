@@ -77,7 +77,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:paddingHorizontal="@dimen/spacing_sm">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
-                    android:scrollbars="horizontal" />
+                    android:clipToPadding="false"/>
 
                 <!-- Left and Right Gradients -->
                 <View
@@ -137,7 +138,9 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
+                android:clipToPadding="false"
                 android:importantForAccessibility="no"
+                android:paddingHorizontal="@dimen/spacing_sm"
                 android:layout_marginBottom="@dimen/spacing_xs"
                 tools:listitem="@layout/item_anime_home" />
 
@@ -158,7 +161,9 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
+                android:clipToPadding="false"
                 android:importantForAccessibility="no"
+                android:paddingHorizontal="@dimen/spacing_sm"
                 android:layout_marginBottom="@dimen/spacing_xs"
                 tools:listitem="@layout/item_anime_home" />
 
@@ -179,7 +184,8 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:overScrollMode="never"
-                android:paddingHorizontal="4dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/spacing_sm"
                 android:importantForAccessibility="no"
                 android:layout_marginBottom="@dimen/spacing_xs"
                 tools:listitem="@layout/item_anime_home" />

@@ -9,42 +9,48 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.wldnasyrf.ds.data.local.room.entity.FavoriteEntity
-import com.wldnasyrf.ds.databinding.ItemFavoriteBinding
+import com.wldnasyrf.ds.databinding.ItemAnimeVerticalBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 class FavoriteAdapter(
     private val onItemClick: (FavoriteEntity) -> Unit
 ) : ListAdapter<FavoriteEntity, FavoriteAdapter.FavoriteViewHolder>(DIFF_CALLBACK) {
 
-    inner class FavoriteViewHolder(private val binding: ItemFavoriteBinding) :
+    inner class FavoriteViewHolder(private val binding: ItemAnimeVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(anime: FavoriteEntity) {
-            binding.tvTitle.text = anime.title
-            binding.tvEpisode.text = anime.altTitles
+            with(binding) {
+                tvTitle.text = anime.title
+                tvAltTitle.text = anime.altTitles
+                tvRatingCount.text = anime.rating.toString()
+                tvChapters.text = anime.year
 
-            // Load Blurred Background
-            Glide.with(binding.ivAnimeBg)
-                .load(anime.imageSource)
-                .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3)))
-                .into(binding.ivAnimeBg)
+                // Load blurred background image
+                Glide.with(ivBackground)
+                    .load(anime.imageSource)
+                    .into(ivBackground)
 
-            // Load Foreground Image
-            Glide.with(binding.ivAnimeImage)
-                .load(anime.imageSource)
-                .apply(RequestOptions().transform(RoundedCorners(16)))
-                .fitCenter()
-                .into(binding.ivAnimeImage)
+                // Load poster image with rounded corners
+                Glide.with(ivPoster)
+                    .load(anime.imageSource)
+                    .apply(RequestOptions().transform(RoundedCorners(16)))
+                    .into(ivPoster)
 
-            // Handle item click
-            binding.root.setOnClickListener {
-                onItemClick(anime)
+                // Handle item click
+                root.setOnClickListener {
+                    onItemClick(anime)
+                }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
-        val binding = ItemFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemAnimeVerticalBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return FavoriteViewHolder(binding)
     }
 

@@ -75,4 +75,5 @@
     <string name="detail_blurred_anime_photo_desc">blurred anime photo</string>
     <string name="banner_btn_watch">Watch</string>
     <string name="banner_btn_anime_detail">Anime Detail</string>
+    <string name="anime_list_toolbar_title">Trending</string>
 </resources>

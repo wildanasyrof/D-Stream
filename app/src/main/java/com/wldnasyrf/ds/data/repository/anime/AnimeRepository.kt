@@ -13,9 +13,9 @@ import com.wldnasyrf.ds.utils.Result
 
 interface AnimeRepository {
     fun getCategory(): LiveData<Result<ApiResponse<List<Category>>>>
-    fun getAnimeList(): LiveData<PagingData<AnimeData>>
+    fun getAnimeList(category: String? = null): LiveData<PagingData<AnimeData>>
     fun getAnimeDetail(id: Int): LiveData<Result<AnimeDetail>>
-    fun getAnimeData(): LiveData<Result<ApiResponse<Anime>>>
+    fun getAnimeData(category: String? = null): LiveData<Result<ApiResponse<Anime>>>
     suspend fun addFavoriteApi(request: FavoriteRequest): ApiResponse<Nothing>
     suspend fun addFavoriteRoom(anime: AnimeDetail)
     suspend fun getFavoriteByID(animeId: Int) : FavoriteEntity?
