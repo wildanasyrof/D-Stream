@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:layout_marginHorizontal="32dp"
-            android:fontFamily="@font/fo_nunito_sans_extra_bold"
             android:text="@string/tv_account"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
@@ -86,7 +85,6 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginBottom="4dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/fo_nunito_sans_bold"
                         android:gravity="start"
                         android:maxEms="9"
                         android:maxLines="1"
@@ -99,7 +97,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:fontFamily="@font/fo_nunito_sans_light"
                         android:text="@string/desc_profile_1"
                         android:textColor="@color/text_primary" />
                 </LinearLayout>
@@ -113,7 +110,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="18dp"
-            android:fontFamily="@font/fo_nunito_sans_extra_bold"
             android:text="@string/tv_preferences"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
@@ -167,7 +163,6 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginBottom="4dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/fo_nunito_sans_bold"
                         android:gravity="start"
                         android:maxEms="9"
                         android:maxLines="1"
@@ -181,7 +176,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:fontFamily="@font/fo_nunito_sans_light"
                         android:text="@string/desc_logout"
                         android:textColor="@color/text_primary" />
                 </LinearLayout>
@@ -200,7 +194,6 @@
             android:id="@+id/textView2"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/fo_nunito_sans_bold"
             android:text="@string/caption_on_login"
             android:textColor="@color/text_primary"
             android:textSize="14sp"
@@ -210,19 +203,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.wldnasyrf.ds.ui.customView.CustomButton
+        <Button
             android:id="@+id/button_login"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/style_button"
-            android:fontFamily="@font/fo_nunito_sans_bold"
+            android:background="@drawable/style_button2"
             android:text="@string/btn_login"
             android:textAllCaps="false"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_md"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,8 +50,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/placeholder_value_rating1"
                             android:textColor="@color/text_primary"
-                            android:textSize="@dimen/text_md"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/text_md"/>
 
                         <TextView
                             android:id="@+id/tv_imdb_rating"
@@ -157,10 +156,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/fo_nunito_sans_extra_bold"
                 android:text="@string/anime_title"
                 android:textColor="@color/text_primary"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 android:gravity="center"/>
 
             <TextView
@@ -168,7 +167,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:fontFamily="@font/fo_nunito_sans_reguler"
                 android:text="@string/anime_alt_title"
                 android:textSize="16sp"
                 android:textColor="@color/text_primary"
@@ -179,7 +177,6 @@
 <!--                android:id="@+id/tv_studio"-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/fo_nunito_sans_light"-->
 <!--                android:text="@string/placeholder_value_studio"-->
 <!--                android:textColor="@color/text_primary"-->
 <!--                android:textSize="16sp"-->
@@ -200,7 +197,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/fo_nunito_sans_reguler"
                 android:paddingBottom="12dp"
                 android:text="Chihiro, a sullen 10-year-old girl, stumbles into a world ruled by gods, witches, and spirits, where humans are changed into beasts."
                 android:textColor="@color/text_primary"
@@ -240,19 +236,20 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/style_button2"
-            android:text="Watch Now"
-            android:textColor="@color/divider"
+            android:background="@drawable/style_button"
+            android:text="@string/detail_button_watch_now"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
             android:gravity="center"/>
 
         <ImageButton
             android:id="@+id/btn_favourite"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/style_button2"
+            android:background="@drawable/style_button"
             android:contentDescription="Favourite"
             android:padding="12dp"
             android:src="@drawable/ic_favourite_border"
-            app:tint="@color/divider"/>
+            app:tint="@android:color/white"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

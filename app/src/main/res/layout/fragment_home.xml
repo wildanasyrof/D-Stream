@@ -129,6 +129,7 @@
                 android:text="@string/home_tv_trending"
                 android:textSize="@dimen/text_md"
                 android:textStyle="bold"
+                android:textColor="@color/text_primary"
                 android:paddingHorizontal="@dimen/spacing_sm"
                 android:paddingVertical="@dimen/spacing_xs"/>
 
@@ -152,6 +153,7 @@
                 android:text="@string/home_tv_new_release"
                 android:textSize="@dimen/text_md"
                 android:textStyle="bold"
+                android:textColor="@color/text_primary"
                 android:paddingHorizontal="@dimen/spacing_sm"
                 android:paddingVertical="@dimen/spacing_xs"/>
 
@@ -175,6 +177,7 @@
                 android:text="@string/home_tv_recommended"
                 android:textSize="@dimen/text_md"
                 android:textStyle="bold"
+                android:textColor="@color/text_primary"
                 android:paddingHorizontal="@dimen/spacing_sm"
                 android:paddingVertical="@dimen/spacing_xs"/>
 

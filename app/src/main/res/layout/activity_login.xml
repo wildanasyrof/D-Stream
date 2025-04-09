@@ -9,15 +9,18 @@
     tools:context=".ui.login.LoginActivity">
 
     <!-- Progress Indicator -->
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:elevation="@dimen/spacing_lg"
-        android:visibility="gone"
+        android:indeterminate="true"
         android:indeterminateTint="@color/primary"
-        tools:visibility="invisible" />
+        android:hardwareAccelerated="true"
+        android:visibility="gone"
+        app:indicatorSize="48dp"
+        app:indicatorInset="0dp"
+        tools:visibility="visible" />
 
     <View
         android:id="@+id/overlay_bg"
@@ -59,7 +62,6 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:fontFamily="@font/fo_nunito_sans_light"
                 android:text="@string/caption_on_login"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_sm"
@@ -113,18 +115,20 @@
                 app:layout_constraintStart_toStartOf="@+id/ed_login_email"
                 app:layout_constraintTop_toBottomOf="@+id/ed_login_email" />
 
-            <com.wldnasyrf.ds.ui.customView.CustomButton
+            <Button
                 android:id="@+id/button_login"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="52dp"
-                android:background="@drawable/style_button"
-                android:fontFamily="@font/fo_nunito_sans_reguler"
+                android:background="@drawable/style_button2"
+                android:gravity="center"
                 android:text="@string/btn_login"
                 android:textAllCaps="false"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_md"
-                android:textColor="@color/button_text"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/ed_login_password"
+                app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="@+id/ed_login_password"
                 app:layout_constraintTop_toBottomOf="@+id/ed_login_password" />
 
@@ -146,14 +150,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/spacing_sm"
-                    android:fontFamily="@font/fo_nunito_sans_reguler"
                     android:text="@string/suggestion2register" />
 
                 <TextView
                     android:id="@+id/txt_registernow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/fo_nunito_sans_bold"
                     android:text="@string/register_now"
                     android:textColor="@color/accent" />
             </LinearLayout>

@@ -1,6 +1,5 @@
 package com.wldnasyrf.ds.ui.login
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -43,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.edLoginEmail.text?.trim().toString()
             val password = binding.edLoginPassword.text?.trim().toString()
 
-            if (email.isEmpty() && password.isEmpty()) {
+            if (email.isEmpty() && password.isEmpty() || !validateInputs(email, password)) {
                 AlertDialog.Builder(this).apply {
                     setTitle("Oops!")
                     setMessage(R.string.email_n_password_empty)
@@ -78,20 +77,28 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun getUserPerferences() {
-        viewModel.userPreferences.observe(this) {
-            Toast.makeText(this, it.token, Toast.LENGTH_SHORT).show()
-        }
+    private fun validateInputs(email: String, password: String): Boolean {
+        val isEmailValid = email.isNotEmpty() && binding.edLoginEmail.error == null
+        val isPasswordValid = password.isNotEmpty() && binding.edLoginPassword.error == null
+
+        return isEmailValid && isPasswordValid
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.overlayBg.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.overlayBg.visibility = View.VISIBLE
+            // Bring the progress bar to front
+            binding.progressBar.bringToFront()
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.overlayBg.visibility = View.GONE
+        }
     }
 
     private fun hideKeyboard() {
         val inputMethodManager =
-            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 }

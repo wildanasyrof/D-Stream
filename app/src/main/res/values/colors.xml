@@ -2,7 +2,7 @@
 <resources>
     <!-- Primary brand colors -->
     <color name="primary">#F44336</color>
-    <color name="primary_variant">#F44336</color>
+    <color name="primary_variant">#FF7368</color>
     <color name="accent">#F44336</color>
 
     <!-- Status colors -->
@@ -55,5 +55,5 @@
     <color name="indicator_pending">#ffa500</color>
 
     <!-- Overlay colors -->
-    <color name="overlay_light">#CCffffff</color>
+    <color name="overlay_light">#66FFFFFF</color>
 </resources>
