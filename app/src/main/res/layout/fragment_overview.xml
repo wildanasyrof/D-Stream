@@ -182,14 +182,16 @@
 <!--                android:textSize="16sp"-->
 <!--                android:gravity="center"/>-->
 
-            <LinearLayout
+            <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/categories_container"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="16dp" />
+                android:paddingHorizontal="16dp"
+                app:flexWrap="wrap"
+                app:alignItems="center"
+                app:justifyContent="center"
+                app:alignContent="center" />
 
             <!-- Description -->
             <TextView

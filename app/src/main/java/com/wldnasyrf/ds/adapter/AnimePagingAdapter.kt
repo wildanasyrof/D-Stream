@@ -22,6 +22,7 @@ class AnimePagingAdapter(
                 tvAltTitle.text = anime.alt_titles
                 tvRatingCount.text = anime.rating.toString()
                 tvChapters.text = anime.year
+                tvEpisode.text = anime.episode_count.toString()
 
                 // Load blurred background image
                 Glide.with(ivBackground)

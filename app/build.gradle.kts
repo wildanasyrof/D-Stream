@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.wldnasyrf.ds"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.wldnasyrf.ds"
@@ -94,4 +94,7 @@ dependencies {
 
     //circle image
     implementation(libs.circleimageview)
+
+    //flexbox
+    implementation(libs.flexbox)
 }

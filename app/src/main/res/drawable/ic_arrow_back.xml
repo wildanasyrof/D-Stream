@@ -1,38 +1,52 @@
+<!--<vector xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:aapt="http://schemas.android.com/aapt"-->
+<!--    android:width="24dp"-->
+<!--    android:height="24dp"-->
+<!--    android:viewportWidth="24"-->
+<!--    android:viewportHeight="24">-->
+
+<!--    &lt;!&ndash; Group to apply transformations (if needed) &ndash;&gt;-->
+<!--    <group>-->
+<!--        &lt;!&ndash; Stroke (Outline) Path &ndash;&gt;-->
+<!--        <path-->
+<!--            android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z"-->
+<!--            android:strokeWidth="1"-->
+<!--            android:strokeColor="@color/surface"-->
+<!--            android:strokeLineCap="round"-->
+<!--            android:strokeLineJoin="round" />-->
+
+<!--        &lt;!&ndash; Fill (Gradient) Path &ndash;&gt;-->
+<!--        <path-->
+<!--            android:strokeWidth="1"-->
+<!--            android:strokeColor="@color/surface"-->
+<!--            android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z">-->
+<!--            <aapt:attr name="android:fillColor">-->
+<!--                <gradient-->
+<!--                    android:type="linear"-->
+<!--                    android:startX="0"-->
+<!--                    android:startY="0"-->
+<!--                    android:endX="24"-->
+<!--                    android:endY="0">-->
+<!--                    <item android:offset="0.2" android:color="#D11A86"/> &lt;!&ndash; Pink &ndash;&gt;-->
+<!--                    <item android:offset="0.5" android:color="#F7941D"/> &lt;!&ndash; Orange &ndash;&gt;-->
+<!--                    <item android:offset="0.66" android:color="#7FB7A3"/> &lt;!&ndash; Blend &ndash;&gt;-->
+<!--                    <item android:offset="0.9" android:color="#0077C8"/> &lt;!&ndash; Blue &ndash;&gt;-->
+<!--                </gradient>-->
+<!--            </aapt:attr>-->
+<!--        </path>-->
+<!--    </group>-->
+<!--</vector>-->
+
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="24dp"
     android:height="24dp"
+    android:autoMirrored="true"
+    android:tint="@color/primary"
     android:viewportWidth="24"
     android:viewportHeight="24">
-
-    <!-- Group to apply transformations (if needed) -->
-    <group>
-        <!-- Stroke (Outline) Path -->
-        <path
-            android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z"
-            android:strokeWidth="1"
-            android:strokeColor="@color/surface"
-            android:strokeLineCap="round"
-            android:strokeLineJoin="round" />
-
-        <!-- Fill (Gradient) Path -->
-        <path
-            android:strokeWidth="1"
-            android:strokeColor="@color/surface"
-            android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z">
-            <aapt:attr name="android:fillColor">
-                <gradient
-                    android:type="linear"
-                    android:startX="0"
-                    android:startY="0"
-                    android:endX="24"
-                    android:endY="0">
-                    <item android:offset="0.2" android:color="#D11A86"/> <!-- Pink -->
-                    <item android:offset="0.5" android:color="#F7941D"/> <!-- Orange -->
-                    <item android:offset="0.66" android:color="#7FB7A3"/> <!-- Blend -->
-                    <item android:offset="0.9" android:color="#0077C8"/> <!-- Blue -->
-                </gradient>
-            </aapt:attr>
-        </path>
-    </group>
+    <path
+        android:strokeWidth="1"
+        android:strokeColor="@color/primary"
+        android:fillColor="@color/primary"
+        android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z" />
 </vector>

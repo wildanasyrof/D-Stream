@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.flexbox.FlexboxLayout
 import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.data.remote.model.anime.AnimeDetail
 import com.wldnasyrf.ds.databinding.FragmentOverviewBinding
@@ -84,6 +85,20 @@ class OverviewFragment : Fragment() {
                     text = category.name
                 }
 
+                // Set layout params for FlexboxLayout
+                val layoutParams = FlexboxLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    (this as? ViewGroup.MarginLayoutParams)?.apply {
+                        marginStart = resources.getDimensionPixelSize(R.dimen.spacing_xs)
+                        marginEnd = resources.getDimensionPixelSize(R.dimen.spacing_xs)
+                        topMargin = resources.getDimensionPixelSize(R.dimen.spacing_xs)
+                        bottomMargin = resources.getDimensionPixelSize(R.dimen.spacing_xs)
+                    }
+                }
+
+                chip.layoutParams = layoutParams
                 categoriesContainer.addView(chip)
             }
         }

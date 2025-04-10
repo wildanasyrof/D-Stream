@@ -31,16 +31,10 @@ class CategoryChipView @JvmOverloads constructor(
         val verticalPadding = resources.getDimensionPixelSize(R.dimen.spacing_xs)
         setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
 
-        // Set default margin (external spacing - 4dp)
-        val horizontalMargin = resources.getDimensionPixelSize(R.dimen.spacing_xs)
-        layoutParams = (layoutParams ?: LinearLayout.LayoutParams(
+        // Set default layout params without margins
+        layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
-        )).apply {
-            (this as? ViewGroup.MarginLayoutParams)?.let {
-                it.marginStart = horizontalMargin
-                it.marginEnd = horizontalMargin
-            }
-        }
+        )
     }
 }

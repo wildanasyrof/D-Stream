@@ -11,14 +11,15 @@
         android:id="@+id/logged_in_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:padding="@dimen/spacing_md"
+        android:visibility="visible">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_avatar"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_marginVertical="40dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:src="@drawable/ic_placeholder_photo"
+            android:layout_marginVertical="@dimen/spacing_xl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,10 +30,9 @@
             style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginHorizontal="32dp"
             android:text="@string/tv_account"
             android:textSize="16sp"
+            android:layout_marginTop="@dimen/spacing_xl"
             app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
 
         <androidx.cardview.widget.CardView
@@ -40,11 +40,11 @@
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="68dp"
-            android:layout_marginHorizontal="32dp"
             android:outlineAmbientShadowColor="@color/cardview_shadow_start_color"
             android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
             app:cardCornerRadius="12dp"
             app:cardElevation="8dp"
+            android:layout_marginTop="@dimen/spacing_xs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_section_account_settings"
@@ -54,7 +54,7 @@
                 android:id="@+id/btn_item_edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
+                android:background="@color/background_secondary"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -108,7 +108,6 @@
             style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="18dp"
             android:text="@string/tv_preferences"
             android:textSize="16sp"
@@ -119,11 +118,11 @@
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="68dp"
-            android:layout_marginHorizontal="32dp"
             android:outlineAmbientShadowColor="@color/cardview_shadow_start_color"
             android:outlineSpotShadowColor="@color/cardview_shadow_end_color"
             app:cardCornerRadius="12dp"
             app:cardElevation="8dp"
+            android:layout_marginTop="@dimen/spacing_xs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_section_preferences_settings"
@@ -133,7 +132,7 @@
                 android:id="@+id/btn_item_logout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
+                android:background="@color/background_secondary"
                 android:clickable="true"
                 android:focusable="true">
 
