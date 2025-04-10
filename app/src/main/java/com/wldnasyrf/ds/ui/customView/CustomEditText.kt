@@ -49,12 +49,12 @@ class CustomEditText: AppCompatEditText, View.OnTouchListener {
         email?.isEmail  = true
         val password: CustomEditText? = findViewById(R.id.ed_login_password)
         password?.isPassword = true
-//        val emailRegister: CustomEditText? = findViewById(R.id.ed_register_email)
-//        emailRegister?.isEmailRegister  = true
-//        val passwordRegister: CustomEditText? = findViewById(R.id.ed_register_password)
-//        passwordRegister?.isPasswordRegister = true
-//        val confrimPassword: CustomEditText? = findViewById(R.id.ed_register_confirmPass)
-//        confrimPassword?.isConfirmPassword = true
+        val emailRegister: CustomEditText? = findViewById(R.id.ed_register_email)
+        emailRegister?.isEmailRegister  = true
+        val passwordRegister: CustomEditText? = findViewById(R.id.ed_register_password)
+        passwordRegister?.isPasswordRegister = true
+        val confrimPassword: CustomEditText? = findViewById(R.id.ed_register_confirmPass)
+        confrimPassword?.isConfirmPassword = true
 
         editTextBackground = ContextCompat.getDrawable(context, R.drawable.style_bg_edittext) as Drawable
         editTextErrorBackground = ContextCompat.getDrawable(context, R.drawable.style_edittext_error) as Drawable

@@ -7,6 +7,8 @@ import com.wldnasyrf.ds.data.remote.model.anime.Category
 import com.wldnasyrf.ds.data.remote.model.anime.FavoriteRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginRequest
 import com.wldnasyrf.ds.data.remote.model.user.LoginResponse
+import com.wldnasyrf.ds.data.remote.model.user.RegisterRequest
+import com.wldnasyrf.ds.data.remote.model.user.User
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -19,6 +21,9 @@ interface ApiService {
     // User Service
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): ApiResponse<LoginResponse>
+
+    @POST("auth/register")
+    suspend fun register(@Body request: RegisterRequest): ApiResponse<User>
 
     // Anime Service
     @GET("anime")

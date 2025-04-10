@@ -1,5 +1,6 @@
 package com.wldnasyrf.ds.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.data.remote.model.user.LoginRequest
 import com.wldnasyrf.ds.databinding.ActivityLoginBinding
+import com.wldnasyrf.ds.ui.register.RegisterActivity
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,6 +58,10 @@ class LoginActivity : AppCompatActivity() {
                 hideKeyboard()
                 login(email, password)
             }
+        }
+
+        binding.txtRegisterNow.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
