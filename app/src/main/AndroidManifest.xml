@@ -16,8 +16,15 @@
         android:theme="@style/Theme.DS"
         tools:targetApi="31">
         <activity
-            android:name=".ui.register.RegisterActivity"
-            android:exported="false" />
+            android:name=".ui.mediaPlayer.MediaPlayerActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="false"
+            tools:ignore="DiscouragedApi" />
+<!--        <activity-->
+<!--            android:name=".ui.register.RegisterActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.animeList.AnimeListActivity"
             android:exported="false" />

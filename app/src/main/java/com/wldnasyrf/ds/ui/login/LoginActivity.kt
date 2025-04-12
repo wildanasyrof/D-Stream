@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.data.remote.model.user.LoginRequest
 import com.wldnasyrf.ds.databinding.ActivityLoginBinding
-import com.wldnasyrf.ds.ui.register.RegisterActivity
 import com.wldnasyrf.ds.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.txtRegisterNow.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+//            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 

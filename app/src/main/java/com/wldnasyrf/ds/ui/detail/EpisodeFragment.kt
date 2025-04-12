@@ -1,5 +1,6 @@
 package com.wldnasyrf.ds.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.utils.Result
 import com.wldnasyrf.ds.adapter.EpisodeAdapter
 import com.wldnasyrf.ds.databinding.FragmentEpisodeBinding
+import com.wldnasyrf.ds.ui.animeList.AnimeListActivity
+import com.wldnasyrf.ds.ui.mediaPlayer.MediaPlayerActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -73,7 +76,11 @@ class EpisodeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         episodeAdapter = EpisodeAdapter { episode ->
-            Toast.makeText(requireContext(), "Clicked: ${episode.title}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), MediaPlayerActivity::class.java).apply {
+                putExtra("VIDEO_URL", episode.videoUrl)
+                putExtra("VIDEO_TITLE", episode.title)
+            }
+            startActivity(intent)
         }
         binding.rvEpisode.apply {
             layoutManager = LinearLayoutManager(requireContext())
