@@ -13,6 +13,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
+import com.wldnasyrf.ds.R
 import com.wldnasyrf.ds.databinding.ActivityMediaPlayerBinding
 import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
@@ -26,6 +27,7 @@ class MediaPlayerActivity : AppCompatActivity() {
     private var currentWindow = 0
     private var playbackPosition = 0L
     private var areControlsVisible = true
+    private var isVideoPaused = false
 
     companion object {
         private const val DEFAULT_VIDEO_URL = "https://www.trenggalekkab.go.id/uploads/video/202101131610507322.mp4"
@@ -56,12 +58,28 @@ class MediaPlayerActivity : AppCompatActivity() {
                     override fun onPlaybackStateChanged(playbackState: Int) {
                         if (playbackState == Player.STATE_READY) {
                             updateProgress()
+                            binding.playPauseButton.setImageResource(
+                                if (isPlaying) R.drawable.ic_pause_media else R.drawable.ic_play_media
+                            )
                         }
                     }
 
                     override fun onIsPlayingChanged(isPlaying: Boolean) {
+                        isVideoPaused = !isPlaying
+                        binding.playPauseButton.setImageResource(
+                            if (isPlaying) R.drawable.ic_pause_media else R.drawable.ic_play_media
+                        )
+
+                        if (isVideoPaused) {
+                            showControls()
+                        }
+
                         if (isPlaying) {
                             startProgressUpdate()
+                            // Auto-hide controls after 3 seconds when playing
+                            binding.playerView.postDelayed({
+                                if (areControlsVisible) toggleControls()
+                            }, 3000)
                         } else {
                             stopProgressUpdate()
                         }
@@ -74,16 +92,45 @@ class MediaPlayerActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupControls() {
-        // Set video title
         binding.videoTitle.text = intent.getStringExtra("VIDEO_TITLE") ?: ""
 
-        // Close button
         binding.closeButton.setOnClickListener { finish() }
 
-        // User button
         binding.userButton.setOnClickListener { /* Handle user action */ }
 
-        // Time bar seek listener
+        binding.playPauseButton.setOnClickListener {
+            player?.let {
+                if (it.isPlaying) {
+                    it.pause()
+                    binding.playPauseButton.setImageResource(R.drawable.ic_play_media)
+                    isVideoPaused = true
+                    showControls()
+                } else {
+                    it.play()
+                    binding.playPauseButton.setImageResource(R.drawable.ic_pause_media)
+                    isVideoPaused = false
+                    // Auto-hide controls after 3 seconds when playing
+                    binding.playerView.postDelayed({
+                        if (areControlsVisible) toggleControls()
+                    }, 3000)
+                }
+            }
+        }
+
+        binding.forwardButton.setOnClickListener {
+            player?.let {
+                val newPosition = it.currentPosition + 10000
+                it.seekTo(newPosition.coerceAtMost(it.duration))
+            }
+        }
+
+        binding.rewindButton.setOnClickListener {
+            player?.let {
+                val newPosition = it.currentPosition - 10000
+                it.seekTo(newPosition.coerceAtLeast(0))
+            }
+        }
+
         binding.timeBar.addListener(object : androidx.media3.ui.TimeBar.OnScrubListener {
             override fun onScrubStart(timeBar: androidx.media3.ui.TimeBar, position: Long) {
                 stopProgressUpdate()
@@ -91,6 +138,9 @@ class MediaPlayerActivity : AppCompatActivity() {
 
             override fun onScrubMove(timeBar: androidx.media3.ui.TimeBar, position: Long) {
                 binding.currentTime.text = formatTime(position)
+                player?.let { exoPlayer ->
+                    binding.totalTime.text = "-${formatTime(exoPlayer.duration - position)}"
+                }
             }
 
             override fun onScrubStop(timeBar: androidx.media3.ui.TimeBar, position: Long, canceled: Boolean) {
@@ -99,28 +149,44 @@ class MediaPlayerActivity : AppCompatActivity() {
             }
         })
 
-        // Player view click listener for toggling controls
         binding.playerView.setOnClickListener { toggleControls() }
     }
 
     private fun toggleControls() {
+        if (isVideoPaused) {
+            showControls()
+            return
+        }
+
         areControlsVisible = !areControlsVisible
         val visibility = if (areControlsVisible) View.VISIBLE else View.INVISIBLE
         val alpha = if (areControlsVisible) 1f else 0f
 
         binding.topControls.visibility = visibility
+        binding.centerControls.visibility = visibility
         binding.bottomControls.visibility = visibility
 
         binding.topControls.animate().alpha(alpha).setDuration(300).start()
+        binding.centerControls.animate().alpha(alpha).setDuration(300).start()
         binding.bottomControls.animate().alpha(alpha).setDuration(300).start()
 
-        if (areControlsVisible) {
-            // Hide controls after 3 seconds if player is playing
-            if (player?.isPlaying == true) {
-                binding.playerView.postDelayed({
-                    if (areControlsVisible) toggleControls()
-                }, 3000)
-            }
+        if (areControlsVisible && player?.isPlaying == true) {
+            binding.playerView.postDelayed({
+                if (areControlsVisible && !isVideoPaused) toggleControls()
+            }, 3000)
+        }
+    }
+
+    private fun showControls() {
+        if (!areControlsVisible) {
+            areControlsVisible = true
+            binding.topControls.visibility = View.VISIBLE
+            binding.centerControls.visibility = View.VISIBLE
+            binding.bottomControls.visibility = View.VISIBLE
+
+            binding.topControls.animate().alpha(1f).setDuration(300).start()
+            binding.centerControls.animate().alpha(1f).setDuration(300).start()
+            binding.bottomControls.animate().alpha(1f).setDuration(300).start()
         }
     }
 
@@ -143,9 +209,10 @@ class MediaPlayerActivity : AppCompatActivity() {
         player?.let {
             val duration = it.duration
             val position = it.currentPosition
+            val remainingTime = duration - position
 
             binding.currentTime.text = formatTime(position)
-            binding.totalTime.text = formatTime(duration)
+            binding.totalTime.text = "-${formatTime(remainingTime)}" // Show remaining time with minus sign
             binding.timeBar.setDuration(duration)
             binding.timeBar.setPosition(position)
             binding.timeBar.setBufferedPosition(it.bufferedPosition)
@@ -175,7 +242,6 @@ class MediaPlayerActivity : AppCompatActivity() {
                 WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
 
-        // Keep screen on while playing
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
