@@ -66,13 +66,13 @@ Main libraries and tools used in this project:
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](Screenshot/Screenshot_20250415-210036_DS.png)
+![Home Page](Screenshots/Screenshot_20250415-210036_DS.png)
 
 ### 📄 Detail Page
-![Detail Page](Screenshot/Screenshot_20250415-210235_DS.png)
+![Detail Page](Screenshots/Screenshot_20250415-210235_DS.png)
 
 ### ❤️ Favorite Page
-![Favorite Page](Screenshot/Screenshot_20250415-210050_DS.png)
+![Favorite Page](Screenshots/Screenshot_20250415-210050_DS.png)
 
 ## 🧑‍💻 Contributions
 
