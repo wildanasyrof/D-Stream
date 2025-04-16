@@ -64,16 +64,9 @@ Main libraries and tools used in this project:
 4. Run the app on an emulator or physical device.
 
 ## 📸 Screenshots
-
-### 🏠 Home Page
 ![Home Page](Screenshots/Screenshot_20250415-210036_DS.png)
-
-### 📄 Detail Page
 ![Detail Page](Screenshots/Screenshot_20250415-210235_DS.png)
-
-### ❤️ Favorite Page
 ![Favorite Page](Screenshots/Screenshot_20250415-210050_DS.png)
 
 ## 🧑‍💻 Contributions
-
 Open for contributions! Feel free to fork this repository and submit a pull request if you’d like to add features or improvements.
